@@ -1,0 +1,838 @@
+/* ============= PAGE CONTAINER ============= */
+
+.camp-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 24px 40px 32px;
+  background: #020617;
+  color: #f9fafb;
+  overflow: hidden;
+  width: 100%;
+}
+
+.camp-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* toolbar + table full width */
+.camp-toolbar,
+.camp-table-wrapper {
+  width: 100%;
+}
+
+/* ============= TOPBAR CREDITS POPOVER ============= */
+
+.ss-coins-wrapper {
+  position: relative;
+  margin-right: 12px;
+}
+
+.ss-coins-clickable {
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.camp-credits-popover {
+  position: absolute;
+  top: 44px;
+  right: 0;
+  width: 380px;
+  padding: 20px 22px 18px;
+  background: #020617;
+  border-radius: 18px;
+  border: 1px solid #1f2937;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+  z-index: 50;
+}
+
+.camp-credits-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.camp-credits-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.camp-credits-count {
+  font-weight: 500;
+}
+
+.camp-credits-bar {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: #111827;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.camp-credits-bar-fill {
+  width: 75%;
+  height: 100%;
+  background: #2563eb;
+}
+
+.camp-credits-upgrade-btn {
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  padding: 10px 0;
+  background: #2563eb;
+  color: #f9fafb;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* ============= TOOLBAR ============= */
+
+.camp-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.camp-search {
+  display: flex;
+  align-items: center;
+  background: #020617;
+  border-radius: 999px;
+  border: 1px solid #1f2937;
+  padding: 0 14px;
+  height: 44px;
+  min-width: 260px;
+}
+
+.camp-search-icon {
+  font-size: 14px;
+  opacity: 0.7;
+  margin-right: 8px;
+}
+
+.camp-search-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #e5e7eb;
+  font-size: 14px;
+  width: 100%;
+}
+
+.camp-search-input::placeholder {
+  color: #6b7280;
+}
+
+.camp-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* filter button (status & sort) */
+
+.camp-filter-wrapper {
+  position: relative;
+}
+
+.camp-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  border: 1px solid #1f2937;
+  padding: 0 14px;
+  height: 40px;
+  background: #020617;
+  color: #e5e7eb;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.camp-filter-icon {
+  font-size: 14px;
+}
+
+.camp-caret {
+  font-size: 10px;
+  opacity: 0.8;
+}
+
+/* Download icon button */
+
+.camp-icon-only-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid #1f2937;
+  background: #020617;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.camp-icon-only-btn svg {
+  stroke: #e5e7eb;
+}
+
+.camp-icon-only-btn:hover {
+  border-color: #334155;
+  background: #030712;
+}
+
+/* ADD NEW button (normal state) */
+
+.camp-add-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  border: none;
+  padding: 0 20px;
+  height: 44px;
+  background: #2563eb;
+  color: #f9fafb;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.camp-add-plus {
+  font-size: 18px;
+}
+
+/* DELETE icon button (when something is selected) */
+
+.camp-delete-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid #1f2937;
+  background: #020617;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.camp-delete-btn svg {
+  stroke: #fca5a5; /* हल्का red */
+}
+
+.camp-delete-btn:hover {
+  border-color: #f97373;
+  background: #030712;
+}
+
+/* ============= STATUS DROPDOWN ============= */
+
+.camp-status-dropdown {
+  position: absolute;
+  top: 46px;
+  right: 0;
+  width: 260px;
+  background: #020617;
+  border-radius: 18px;
+  border: 1px solid #1f2937;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
+  padding: 8px 0 10px;
+  z-index: 40;
+}
+
+.camp-status-search {
+  padding: 4px 14px 8px;
+}
+
+.camp-status-search input {
+  width: 100%;
+  height: 30px;
+  border-radius: 999px;
+  border: 1px solid #1f2937;
+  background: #020617;
+  color: #e5e7eb;
+  font-size: 12px;
+  padding: 0 10px;
+  outline: none;
+}
+
+.camp-status-list {
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.camp-status-option {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #e5e7eb;
+  font-size: 13px;
+  padding: 9px 14px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.camp-status-option:hover {
+  background: #030712;
+}
+
+.camp-status-option-active {
+  background: #111827;
+}
+
+.camp-status-option-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ============= SORT DROPDOWN ============= */
+
+.camp-sort-dropdown {
+  position: absolute;
+  top: 46px;
+  right: 0;
+  width: 220px;
+  background: #020617;
+  border-radius: 18px;
+  border: 1px solid #1f2937;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
+  padding: 6px 0 8px;
+  z-index: 40;
+}
+
+.camp-sort-option {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #e5e7eb;
+  font-size: 13px;
+  padding: 10px 18px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.camp-sort-option:hover {
+  background: #030712;
+}
+
+.camp-sort-option-active {
+  background: #111827;
+}
+
+/* ============= TABLE WRAPPER ============= */
+
+.camp-table-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  border-radius: 18px;
+  border: 1px solid #111827;
+  background: #020617;
+  padding: 0;
+}
+
+/* header row */
+
+.camp-header-row {
+  display: grid;
+  grid-template-columns: 40px minmax(220px, 1.7fr) 1fr 1.2fr 0.7fr 0.7fr 1fr 1fr 110px;
+  align-items: center;
+  padding: 14px 28px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6b7280;
+  border-bottom: 1px solid #111827;
+}
+
+/* generic column */
+
+.camp-col {
+  display: flex;
+  align-items: center;
+}
+
+.camp-col-checkbox {
+  justify-content: center;
+}
+
+.camp-col-name {
+  font-size: 14px;
+}
+
+/* data rows */
+
+.camp-row {
+  display: grid;
+  grid-template-columns: 40px minmax(220px, 1.7fr) 1fr 1.2fr 0.7fr 0.7fr 1fr 1fr 110px;
+  align-items: center;
+  padding: 18px 28px;
+  font-size: 13px;
+  border-bottom: 1px solid #020617;
+  background: #020617;
+}
+
+.camp-row:last-child {
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+}
+
+.camp-row:hover {
+  background: #030712;
+}
+
+.camp-row-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* status badges */
+
+.camp-status {
+  font-size: 12px;
+  border-radius: 999px;
+  padding: 4px 12px;
+  border: 1px solid #374151;
+  background: #020617;
+}
+
+.camp-status-completed {
+  background: #16a34a;
+  border-color: #16a34a;
+  color: #ecfdf5;
+}
+
+.camp-status-draft {
+  background: #111827;
+  border-color: #374151;
+  color: #e5e7eb;
+}
+
+.camp-status-active {
+  background: #22c55e;
+  border-color: #16a34a;
+  color: #ecfdf5;
+}
+
+.camp-status-paused {
+  background: #f97316;
+  border-color: #ea580c;
+  color: #111827;
+}
+
+.camp-status-error {
+  background: #ef4444;
+  border-color: #b91c1c;
+  color: #fef2f2;
+}
+
+/* progress */
+
+.camp-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.camp-progress-label {
+  min-width: 36px;
+}
+
+.camp-progress-track {
+  flex: 1;
+  height: 4px;
+  border-radius: 999px;
+  background: #111827;
+  overflow: hidden;
+}
+
+.camp-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: #22c55e;
+}
+
+.camp-progress-empty {
+  color: #6b7280;
+}
+
+/* replied column divider */
+
+.camp-divider {
+  margin: 0 4px;
+  opacity: 0.6;
+}
+
+/* actions column */
+
+.camp-col-actions {
+  justify-content: flex-end;
+  gap: 18px;
+}
+
+/* transparent icon buttons (play + more) */
+
+.camp-icon-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* green play icon */
+.camp-icon-play svg {
+  stroke: #22c55e;
+}
+
+/* grey 3 dots */
+.camp-icon-more svg {
+  stroke: #9ca3af;
+}
+
+/* row menu (3 dots dropdown) */
+
+.camp-more-wrapper {
+  position: relative;
+}
+
+.camp-row-menu {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: 260px;
+  background: #020617;
+  border-radius: 18px;
+  border: 1px solid #1f2937;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
+  padding: 6px 0 8px;
+  z-index: 40;
+}
+
+.camp-row-menu button {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #e5e7eb;
+  font-size: 13px;
+  padding: 10px 18px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.camp-row-menu button:hover {
+  background: #030712;
+}
+
+.camp-row-menu-label {
+  margin-left: 0;
+}
+
+/* My Organization wrapper */
+.ss-org-wrapper {
+  position: relative;
+}
+
+/* Org dropdown */
+.camp-org-dropdown {
+  position: absolute;
+  top: 44px;
+  right: 0;
+  width: 260px;
+  padding: 10px 0;
+  background: #020617;
+  border-radius: 12px;
+  border: 1px solid #1f2937;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+  z-index: 40;
+}
+
+/* Search inside org dropdown */
+.camp-org-search {
+  padding: 0 12px 8px;
+}
+
+.camp-org-search input {
+  width: 100%;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #273549;
+  background: #020617;
+  color: #e5e7eb;
+  font-size: 13px;
+}
+
+/* Org items */
+.camp-org-item {
+  width: 100%;
+  padding: 8px 14px;
+  text-align: left;
+  background: transparent;
+  border: none;
+  color: #e5e7eb;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.camp-org-item:hover {
+  background: #0b1220;
+}
+
+.camp-org-item-active {
+  font-weight: 500;
+}
+
+.camp-org-create {
+  border-top: 1px solid #111827;
+  margin-top: 4px;
+}
+
+/* ===== Import modal overlay ===== */
+
+.camp-import-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+}
+
+.camp-import-modal {
+  width: 480px;
+  max-width: 90%;
+  background: #020617;
+  border-radius: 16px;
+  padding: 24px 32px 28px;
+  border: 1px solid #1f2937;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+}
+
+.camp-import-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #f9fafb;
+  margin-bottom: 8px;
+}
+
+/* Tabs */
+
+.camp-import-tabs {
+  display: flex;
+  gap: 24px;
+  border-bottom: 1px solid #111827;
+  margin-bottom: 24px;
+}
+
+.camp-import-tab {
+  padding: 8px 0;
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: #9ca3af;
+  cursor: pointer;
+  position: relative;
+}
+
+.camp-import-tab-active {
+  color: #e5e7eb;
+}
+
+.camp-import-tab-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: #2563eb; /* blue underline */
+}
+
+/* From file */
+
+.camp-import-file {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 12px;
+  padding-bottom: 8px;
+}
+
+.camp-import-cloud {
+  width: 140px;
+  height: 90px;
+  border-radius: 999px;
+  background: #020617;
+  border: 1px dashed #374151;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.camp-import-cloud-icon {
+  font-size: 32px;
+}
+
+.camp-import-cloud-arrow {
+  font-size: 20px;
+  margin-top: -6px;
+}
+
+.camp-import-browse-btn {
+  padding: 8px 26px;
+  border-radius: 999px;
+  border: none;
+  background: #2563eb;
+  color: #f9fafb;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.camp-import-browse-btn:hover {
+  background: #1d4ed8;
+}
+
+.camp-import-filename {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+/* From link */
+
+.camp-import-link {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 6px;
+}
+
+.camp-import-link-label {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+.camp-import-link-input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #273549;
+  background: #020617;
+  color: #e5e7eb;
+  font-size: 14px;
+}
+
+.camp-import-link-input::placeholder {
+  color: #6b7280;
+}
+
+.camp-import-link-btn {
+  align-self: flex-start;
+  margin-top: 6px;
+}
+
+/* ===== Delete confirm modal (centre) ===== */
+
+.camp-delete-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;      /* vertical centre */
+  justify-content: center;  /* horizontal centre */
+  z-index: 70;
+}
+
+.camp-delete-modal {
+  width: 480px;
+  max-width: 90%;
+  background: #020617;
+  border-radius: 16px;
+  padding: 20px 26px 22px;
+  border: 1px solid #1f2937;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+}
+
+.camp-delete-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.camp-delete-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.camp-delete-close {
+  border: none;
+  background: transparent;
+  color: #9ca3af;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.camp-delete-body {
+  font-size: 14px;
+  color: #e5e7eb;
+  margin-bottom: 20px;
+}
+
+.camp-delete-body p + p {
+  margin-top: 4px;
+}
+
+.camp-delete-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.camp-delete-cancel {
+  padding: 8px 20px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  color: #e5e7eb;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.camp-delete-ok {
+  padding: 8px 26px;
+  border-radius: 10px;
+  border: none;
+  background: #2563eb;
+  color: #f9fafb;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}

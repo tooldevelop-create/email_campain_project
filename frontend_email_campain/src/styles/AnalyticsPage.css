@@ -1,0 +1,574 @@
+/* =============== Global background override (same color everywhere) =============== */
+
+:root,
+html,
+body {
+  background-color: #020617 !important; /* force dark blue */
+}
+
+#root,
+.ss-app,
+.ss-main {
+  background: #020617;
+}
+
+/* =============== Analytics Layout =============== */
+
+.ana-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 32px 32px;
+  box-sizing: border-box;
+  background: #020617;
+}
+
+.ana-inner {
+  flex: 1;
+  width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =============== Top controls row =============== */
+
+.ana-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.ana-controls-left {
+  min-width: 0;
+}
+
+.ana-controls-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* chip-style buttons */
+
+.ana-chip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid #1f2933;
+  background: #020617;
+  color: #e5e7eb;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.ana-chip-btn:hover {
+  background: #030817;
+}
+
+.ana-chip-wrapper {
+  position: relative;
+}
+
+.ana-caret {
+  margin-left: 4px;
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+/* icon-only button (gear) */
+
+.ana-icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid #1f2933;
+  background: #020617;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #e5e7eb; /* SVG / emoji uses currentColor */
+  cursor: pointer;
+}
+
+.ana-icon-btn:hover {
+  background: #030817;
+}
+
+.ana-icon-gear {
+  font-size: 14px;
+  line-height: 1;
+  display: inline-block;
+}
+
+/* =============== Dropdowns =============== */
+
+.ana-dd {
+  position: absolute;
+  right: 0;
+  margin-top: 6px;
+  background: #020617;
+  border-radius: 12px;
+  border: 1px solid #1f2933;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  padding: 4px 0 6px;
+  z-index: 40;
+  min-width: 220px;
+}
+
+.ana-dd-wide {
+  min-width: 260px;
+}
+
+.ana-dd-search {
+  padding: 6px 10px 4px;
+}
+
+.ana-dd-search input {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #1f2933;
+  background: #020617;
+  color: #e5e7eb;
+  font-size: 12px;
+}
+
+.ana-dd-search input::placeholder {
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.ana-dd-row {
+  width: 100%;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: #e5e7eb;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.ana-dd-row:hover {
+  background: rgba(148, 163, 184, 0.1);
+}
+
+.ana-dd-row-active {
+  background: rgba(56, 189, 248, 0.09);
+}
+
+.ana-dd-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ana-dd-right {
+  display: flex;
+  align-items: center;
+}
+
+.ana-dd-icon-status {
+  color: #fbbf24;
+}
+
+.ana-dd-check-icon {
+  color: #22c55e;
+}
+
+/* =============== Metrics row =============== */
+
+.ana-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.ana-metric-card {
+  background: #020617;
+  border-radius: 14px;
+  border: 1px solid #111827;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 90px;
+}
+
+.ana-metric-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.ana-metric-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+}
+
+.ana-metric-label {
+  font-weight: 500;
+}
+
+.ana-metric-info {
+  margin-left: auto;
+  font-size: 10px;
+  opacity: 0.5;
+}
+
+.ana-metric-value {
+  margin-top: 6px;
+  font-size: 26px;
+  font-weight: 600;
+  color: #f9fafb;
+}
+
+/* =============== Chart + Bottom CARD (single container) =============== */
+
+.ana-chart-card {
+  margin-top: 22px;
+  padding: 18px 18px 22px;
+  border-radius: 18px;
+  border: 1px solid #111827;
+  background: #020617;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* top chart part */
+
+.ana-chart-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ana-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+/* legend items are clickable toggles */
+
+.ana-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.ana-legend-item-disabled {
+  opacity: 0.4;
+}
+
+.ana-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+}
+
+.ana-dot-sent {
+  background: #3b82f6;
+}
+
+.ana-dot-total-opens {
+  background: #eab308;
+}
+
+.ana-dot-unique-opens {
+  background: #22c55e;
+}
+
+.ana-dot-total-replies {
+  background: #a855f7;
+}
+
+.ana-dot-total-clicks {
+  background: #6b7280;
+}
+
+.ana-dot-unique-clicks {
+  background: #f97316;
+}
+
+.ana-chart-frame {
+  margin-top: 8px;
+  border-radius: 18px;
+  border: 1px solid #111827;
+  background: #020617;
+  padding: 18px 20px 14px;
+  position: relative;
+  overflow: hidden;
+  height: 260px;
+}
+
+/* =============== Bottom analytics section (inside same card) =============== */
+
+.ana-bottom {
+  margin-top: 6px;
+  border-top: 1px solid #111827;
+  padding-top: 10px;
+}
+
+.ana-bottom-tabs {
+  position: relative;
+  display: flex;
+  gap: 18px;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+}
+
+/* full-width blue line under tabs */
+.ana-bottom-tabs::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: #38bdf8;
+}
+
+.ana-bottom-tab {
+  position: relative;
+  background: transparent;
+  border: none;
+  padding: 6px 2px 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #9ca3af;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  z-index: 1;
+}
+
+.ana-bottom-tab-icon {
+  color: #38bdf8;
+}
+
+.ana-bottom-tab-active {
+  color: #f9fafb;
+  border-bottom-color: #38bdf8;
+}
+
+.ana-bottom-section {
+  margin-top: 4px;
+}
+
+.ana-bottom-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.ana-bottom-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #f9fafb;
+}
+
+/* =============== Tables =============== */
+
+.ana-table-wrapper {
+  border-radius: 18px;
+  border: 1px solid #111827;
+  background: #020617;
+  overflow: visible;      /* dropdown clip na ho */
+  position: relative;
+}
+
+.ana-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  color: #e5e7eb;
+}
+
+.ana-table-head th {
+  text-align: left;
+  font-weight: 500;
+  padding: 10px 16px;
+  border-bottom: 1px solid #111827;
+  color: #9ca3af;
+}
+
+.ana-table-head th.ana-table-actions {
+  text-align: right;
+}
+
+.ana-table-row td {
+  padding: 10px 16px;
+  border-bottom: 1px solid #0b1120;
+}
+
+.ana-table-row:last-child td {
+  border-bottom: none;
+}
+
+.ana-table-cell-center {
+  text-align: center;
+}
+
+.ana-table-actions-cell {
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* campaign cell */
+
+.ana-campaign-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ana-campaign-name {
+  font-weight: 500;
+}
+
+.ana-pill {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.ana-pill-completed {
+  background: rgba(34, 197, 94, 0.12);
+  border-color: rgba(34, 197, 94, 0.4);
+  color: #bbf7d0;
+}
+
+/* table action icons */
+
+.ana-table-icon-btn {
+  background: transparent;
+  border: none;
+  padding: 0 4px;
+  cursor: pointer;
+  color: #9ca3af;
+}
+
+.ana-table-icon-btn:hover {
+  color: #e5e7eb;
+}
+
+/* ======== Actions menu (3 dots) ========= */
+
+.ana-actions-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.ana-actions-menu {
+  position: absolute;
+  right: 0;
+  top: 24px;
+  min-width: 200px;
+  background: #020617;
+  border-radius: 12px;
+  border: 1px solid #111827;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+  padding: 6px 0;
+  z-index: 200;
+}
+
+.ana-actions-item {
+  width: 100%;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: #e5e7eb;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.ana-actions-item:hover {
+  background: rgba(148, 163, 184, 0.12);
+}
+
+.ana-actions-icon {
+  flex-shrink: 0;
+}
+
+/* =============== Responsive tweaks =============== */
+
+@media (max-width: 1100px) {
+  .ana-metrics-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .ana-metrics-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ana-controls-row {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+  }
+
+  .ana-bottom-tabs {
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .ana-page {
+    padding: 0 16px 24px;
+  }
+
+  .ana-inner {
+    max-width: 100%;
+  }
+
+  .ana-metrics-row {
+    grid-template-columns: 1fr;
+  }
+
+  .ana-chart-frame {
+    padding: 14px 14px 12px;
+  }
+
+  .ana-chart-frame {
+    height: 220px;
+  }
+
+  .ana-table-head th,
+  .ana-table-row td {
+    padding: 8px 10px;
+  }
+}

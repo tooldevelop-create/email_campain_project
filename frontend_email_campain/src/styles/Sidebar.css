@@ -1,0 +1,100 @@
+/* ===== SIDEBAR CONTAINER ===== */
+.ss-sidebar {
+  width: 72px;
+  max-height: 100vh;       /* viewport ke andar rehne ke liye */
+  background: #020617;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 0;
+  flex-shrink: 0;
+  border-right: 1px solid #111827;
+  color: #e5e7eb;
+  box-sizing: border-box;
+  overflow-y: auto;        /* agar height kam ho to sidebar scroll ho jayega */
+}
+
+/* groups */
+.ss-sidebar-top,
+.ss-sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* bottom group ko niche push karo but agar space kam ho to scroll */
+.ss-sidebar-bottom {
+  margin-top: 24px;
+}
+
+/* ===== LOGO ===== */
+.ss-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ss-logo-icon {
+  font-size: 22px;
+}
+
+/* ===== ICON BUTTONS (Link + button dono) ===== */
+.ss-icon-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  border: none;
+  outline: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #e5e7eb99;
+  position: relative;
+  text-decoration: none;    /* <Link> ke underline hatao */
+}
+
+.ss-icon-btn:hover {
+  background: #111827;
+  color: #f9fafb;
+}
+
+/* active (clicked / selected) */
+.ss-icon-btn-active {
+  background: #111827;
+  box-shadow: 0 0 0 1px #111827;
+  color: #38bdf8;
+}
+
+/* lucide svg */
+.ss-icon {
+  width: 22px;
+  height: 22px;
+  stroke-width: 2;
+  stroke: currentColor;
+}
+
+/* ===== BADGE (96) ===== */
+.ss-icon-btn-notif {
+  position: relative;
+}
+
+.ss-badge {
+  position: absolute;
+  right: -6px;
+  top: 22px;
+  min-width: 20px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 600;
+  text-align: center;
+}

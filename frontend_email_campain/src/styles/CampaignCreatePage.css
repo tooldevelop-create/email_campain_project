@@ -1,0 +1,117 @@
+/* page main area */
+.camp-create-main {
+  background: #020617;
+  color: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;          /* full height */
+  padding: 24px 40px 40px;
+}
+
+/* top back header */
+.camp-create-header {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding-bottom: 16px;
+}
+
+.camp-create-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: transparent;
+  color: #e5e7eb;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.camp-create-back-arrow {
+  font-size: 18px;
+  margin-right: 2px;
+}
+
+/* CENTER BODY BLOCK */
+.camp-create-body {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  flex: 1;                         /* take remaining height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;         /* vertical center */
+}
+
+/* title + subtitle */
+.camp-create-title {
+  font-size: 28px;
+  font-weight: 600;
+  padding-left: 360px;             /* center-ish like Instantly */
+}
+
+.camp-create-subtitle {
+  color: #9ca3af;
+  font-size: 14px;
+  padding-left: 360px;
+}
+
+/* form */
+.camp-create-form {
+  padding-left: 360px;
+}
+
+.camp-create-label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #e5e7eb;
+}
+
+.camp-create-input {
+  width: 100%;
+  padding: 24px 20px;
+  border-radius: 14px;
+  border: 1px solid #1f2937;
+  background: #020617;
+  color: #f9fafb;
+  font-size: 24px;
+  outline: none;
+}
+
+.camp-create-input:focus {
+  border-color: #2563eb;
+}
+
+/* actions (Cancel + Continue) */
+.camp-create-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 32px;
+  padding-left: 360px;             /* ⬅️ same offset as input */
+}
+
+.camp-create-cancel {
+  border: none;
+  background: transparent;
+  color: #2563eb;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.camp-create-continue {
+  padding: 12px 32px;
+  border-radius: 10px;
+  border: none;
+  background: #2563eb;
+  color: #f9fafb;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.4);
+}
+
+.camp-create-continue:hover {
+  background: #1d4ed8;
+}
