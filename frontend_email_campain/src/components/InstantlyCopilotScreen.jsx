@@ -94,8 +94,9 @@ export default function InstantlyCopilotScreen() {
           />
         )}
 
-        {activeTab === TABS.TASKS && <CopilotTasksView onCreateTask={() => setActiveTab(TABS.NEW_CHAT)} />}
+        {activeTab === TABS.TASKS && <CopilotTasksView />}
 
+        {/* ✅ SETTINGS SCREEN (Screenshot jaisa) */}
         {activeTab === TABS.SETTINGS && <CopilotSettingsView />}
       </section>
     </div>
@@ -103,7 +104,6 @@ export default function InstantlyCopilotScreen() {
 }
 
 /* ---------- Home ---------- */
-
 function CopilotChatHome() {
   return (
     <div className="copilot-center">
@@ -112,36 +112,26 @@ function CopilotChatHome() {
       <div className="copilot-input-box">
         <input className="copilot-input" placeholder="Ask Instantly AI or type / to see prompts..." />
         <div className="copilot-input-actions">
-          <button className="copilot-mic-btn" title="Voice">
-            🎙
-          </button>
-          <button className="copilot-send-btn" title="Send">
-            ⬆
-          </button>
+          <button className="copilot-mic-btn" title="Voice">🎙</button>
+          <button className="copilot-send-btn" title="Send">⬆</button>
         </div>
       </div>
 
       <div className="copilot-chip-row">
         {ROW1.map((t) => (
-          <button key={t} className="copilot-chip">
-            {t}
-          </button>
+          <button key={t} className="copilot-chip">{t}</button>
         ))}
       </div>
 
       <div className="copilot-chip-row">
         {ROW2.map((t) => (
-          <button key={t} className="copilot-chip">
-            {t}
-          </button>
+          <button key={t} className="copilot-chip">{t}</button>
         ))}
       </div>
 
       <div className="copilot-chip-row">
         {ROW3.map((t) => (
-          <button key={t} className="copilot-chip">
-            {t}
-          </button>
+          <button key={t} className="copilot-chip">{t}</button>
         ))}
       </div>
     </div>
@@ -149,7 +139,6 @@ function CopilotChatHome() {
 }
 
 /* ---------- MEMORY VIEW (overview + flow) ---------- */
-
 function CopilotMemoryView({ screen, onEditManually, onChangeMethod }) {
   const [showWebsiteModal, setShowWebsiteModal] = useState(false);
   const [showFileModal, setShowFileModal] = useState(false);
@@ -196,7 +185,6 @@ function CopilotMemoryView({ screen, onEditManually, onChangeMethod }) {
 }
 
 /* ---------- MEMORY FLOW ---------- */
-
 function CopilotMemoryFlow({ onChangeMethod }) {
   const [activeMemoryTab, setActiveMemoryTab] = useState(MEMORY_TABS.BUSINESS_DETAILS);
 
@@ -312,15 +300,11 @@ function CopilotMemoryFlow({ onChangeMethod }) {
                   <button type="button" className="footer-pill-btn" onClick={onChangeMethod}>
                     ← Change Method
                   </button>
-                  <button type="button" className="footer-pill-icon" title="Clear">
-                    🗑
-                  </button>
+                  <button type="button" className="footer-pill-icon" title="Clear">🗑</button>
                 </div>
 
                 <div className="footer-right">
-                  <button type="submit" className="memory-next-btn">
-                    Next
-                  </button>
+                  <button type="submit" className="memory-next-btn">Next</button>
                 </div>
               </div>
             </form>
@@ -340,7 +324,6 @@ function CopilotMemoryFlow({ onChangeMethod }) {
 }
 
 /* ---------- CUSTOMER PROFILES ---------- */
-
 function CustomerProfilesScreen({ onChangeMethod, onBack, onNext }) {
   return (
     <div className="customer-profiles-wrap">
@@ -360,18 +343,12 @@ function CustomerProfilesScreen({ onChangeMethod, onBack, onNext }) {
             <button type="button" className="footer-pill-btn" onClick={onChangeMethod}>
               ← Change Method
             </button>
-            <button type="button" className="footer-pill-icon" title="Clear">
-              🗑
-            </button>
+            <button type="button" className="footer-pill-icon" title="Clear">🗑</button>
           </div>
 
           <div className="footer-right">
-            <button type="button" className="footer-back" onClick={onBack}>
-              Back
-            </button>
-            <button type="button" className="memory-next-btn" onClick={onNext}>
-              Next
-            </button>
+            <button type="button" className="footer-back" onClick={onBack}>Back</button>
+            <button type="button" className="memory-next-btn" onClick={onNext}>Next</button>
           </div>
         </div>
       </div>
@@ -379,8 +356,7 @@ function CustomerProfilesScreen({ onChangeMethod, onBack, onNext }) {
   );
 }
 
-/* ✅ UPDATED GUIDANCE SCREEN (Exact like screenshot) */
-
+/* ---------- GUIDANCE ---------- */
 function GuidanceScreen({ onChangeMethod, onBack }) {
   const [open, setOpen] = useState(false);
 
@@ -435,18 +411,12 @@ function GuidanceScreen({ onChangeMethod, onBack }) {
             <button type="button" className="footer-pill-btn" onClick={onChangeMethod}>
               ← Change Method
             </button>
-            <button type="button" className="footer-pill-icon" title="Clear">
-              🗑
-            </button>
+            <button type="button" className="footer-pill-icon" title="Clear">🗑</button>
           </div>
 
           <div className="footer-right">
-            <button type="button" className="footer-back" onClick={onBack}>
-              Back
-            </button>
-            <button type="button" className="memory-next-btn" onClick={handleSave}>
-              Save
-            </button>
+            <button type="button" className="footer-back" onClick={onBack}>Back</button>
+            <button type="button" className="memory-next-btn" onClick={handleSave}>Save</button>
           </div>
         </div>
       </div>
@@ -454,8 +424,7 @@ function GuidanceScreen({ onChangeMethod, onBack }) {
   );
 }
 
-/* ---------- Modals (same) ---------- */
-
+/* ---------- Modals ---------- */
 function ReadWebsiteModal({ onClose }) {
   const [url, setUrl] = useState("");
 
@@ -469,9 +438,7 @@ function ReadWebsiteModal({ onClose }) {
       <div className="copilot-modal">
         <div className="copilot-modal-header">
           <h3 className="copilot-modal-title">Read my website</h3>
-          <button className="copilot-modal-close" onClick={onClose} aria-label="Close">
-            ✕
-          </button>
+          <button className="copilot-modal-close" onClick={onClose} aria-label="Close">✕</button>
         </div>
 
         <div className="copilot-modal-body">
@@ -487,12 +454,8 @@ function ReadWebsiteModal({ onClose }) {
         </div>
 
         <div className="copilot-modal-footer">
-          <button className="copilot-modal-btn copilot-modal-btn-cancel" onClick={onClose}>
-            Cancel
-          </button>
-          <button className="copilot-modal-btn copilot-modal-btn-primary" onClick={handleExtract}>
-            Extract
-          </button>
+          <button className="copilot-modal-btn copilot-modal-btn-cancel" onClick={onClose}>Cancel</button>
+          <button className="copilot-modal-btn copilot-modal-btn-primary" onClick={handleExtract}>Extract</button>
         </div>
       </div>
     </div>
@@ -520,9 +483,7 @@ function ReadFileModal({ onClose }) {
       <div className="copilot-modal">
         <div className="copilot-modal-header">
           <h3 className="copilot-modal-title">Read a PDF or text file</h3>
-          <button className="copilot-modal-close" onClick={onClose} aria-label="Close">
-            ✕
-          </button>
+          <button className="copilot-modal-close" onClick={onClose} aria-label="Close">✕</button>
         </div>
 
         <div className="copilot-modal-body">
@@ -545,23 +506,106 @@ function ReadFileModal({ onClose }) {
         </div>
 
         <div className="copilot-modal-footer">
-          <button className="copilot-modal-btn copilot-modal-btn-cancel" onClick={onClose}>
-            Cancel
-          </button>
-          <button className="copilot-modal-btn copilot-modal-btn-primary" onClick={handleExtract}>
-            Extract
-          </button>
+          <button className="copilot-modal-btn copilot-modal-btn-cancel" onClick={onClose}>Cancel</button>
+          <button className="copilot-modal-btn copilot-modal-btn-primary" onClick={handleExtract}>Extract</button>
         </div>
       </div>
     </div>
   );
 }
 
-/* ---------- TASKS / SETTINGS (short) ---------- */
-
+/* ✅ TASKS SCREEN (Screenshot jaisa) */
 function CopilotTasksView() {
-  return <div className="copilot-tasks">Tasks</div>;
+  const handleCreateTask = () => {
+    alert("Create task clicked!");
+  };
+
+  return (
+    <div className="copilot-tasks-page">
+      <h2 className="copilot-tasks-title">Tasks</h2>
+      <p className="copilot-tasks-sub">Manage your tasks and stay on top of your workflow.</p>
+
+      <p className="copilot-tasks-body">
+        You don't have any tasks yet. A task is a recurring prompt that Instantly Copilot will execute on a schedule.
+        Create a new task{" "}
+        <button type="button" className="copilot-tasks-link" onClick={handleCreateTask}>
+          here.
+        </button>
+      </p>
+    </div>
+  );
 }
+
+/* ✅ SETTINGS SCREEN (Screenshot jaisa) */
 function CopilotSettingsView() {
-  return <div className="copilot-settings">Settings</div>;
+  const [analyticsEnabled, setAnalyticsEnabled] = useState(true);
+
+  const handleSave = () => {
+    console.log("Settings saved:", { analyticsEnabled });
+    alert("Saved!");
+  };
+
+  const handleSlackConnect = () => {
+    alert("Connect to Slack clicked!");
+  };
+
+  return (
+    <div className="copilot-settings-page">
+      <h2 className="copilot-settings-title">Instantly Copilot Settings</h2>
+      <p className="copilot-settings-sub">Configure your Instantly Copilot settings.</p>
+
+      <div className="copilot-settings-cards">
+        {/* Analytics Card */}
+        <div className="copilot-settings-card">
+          <div className="copilot-settings-card-left">
+            <div className="copilot-settings-card-heading">Analytics</div>
+            <div className="copilot-settings-card-text">
+              Enable analytics tracking for Instantly Copilot interactions and performance metrics.
+            </div>
+          </div>
+
+          <div className="copilot-settings-card-right">
+            <div className="copilot-toggle">
+              <button
+                type="button"
+                className={"copilot-toggle-btn" + (!analyticsEnabled ? " is-active is-dark" : "")}
+                onClick={() => setAnalyticsEnabled(false)}
+              >
+                Disable
+              </button>
+              <button
+                type="button"
+                className={"copilot-toggle-btn" + (analyticsEnabled ? " is-active is-green" : "")}
+                onClick={() => setAnalyticsEnabled(true)}
+              >
+                Enable
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Slack Notifications Card */}
+        <div className="copilot-settings-card">
+          <div className="copilot-settings-card-left">
+            <div className="copilot-settings-card-heading">Slack Notifications</div>
+            <div className="copilot-settings-card-text">
+              Send recurring-task notifications to a Slack channel.
+            </div>
+          </div>
+
+          <div className="copilot-settings-card-right">
+            <button type="button" className="copilot-slack-btn" onClick={handleSlackConnect}>
+              Connect to Slack
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="copilot-settings-footer">
+        <button type="button" className="copilot-settings-save" onClick={handleSave}>
+          Save
+        </button>
+      </div>
+    </div>
+  );
 }
