@@ -15,19 +15,19 @@ import CrmOpportunitiesPage from "./components/CrmOpportunitiesPage";
 import CrmLeadsPage from "./components/CrmLeadsPage";
 import CrmUnnamedListPage from "./components/CrmUnnamedListPage";
 import CopilotCreateWorkspacePage from "./components/CopilotCreateWorkspacePage";
+
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navigate to="/copilot" replace />} />
 
-        <Route path="/copilot" element={<InstantlyCopilotPage />} />
+        {/* ✅ IMPORTANT: wildcard so /copilot/memory etc. work */}
+        <Route path="/copilot/*" element={<InstantlyCopilotPage />} />
+
         <Route path="/supersearch" element={<SuperSearchPage />} />
         <Route path="/email-accounts" element={<EmailAccountsPage />} />
-        <Route
-          path="/email-accounts/connect"
-          element={<ConnectAccountsPage />}
-        />
+        <Route path="/email-accounts/connect" element={<ConnectAccountsPage />} />
         <Route path="/campaigns" element={<CampaignsPage />} />
         <Route path="/campaigns/create" element={<CampaignCreatePage />} />
         <Route path="/unibox" element={<UniboxPage />} />
@@ -47,10 +47,14 @@ export default function App() {
         {/* All Leads */}
         <Route path="/crm/leads" element={<CrmLeadsPage />} />
 
-        {/* ⬇️ Unnamed list detail */}
+        {/* Unnamed list detail */}
         <Route path="/crm/unnamed-list/:id" element={<CrmUnnamedListPage />} />
-        <Route path="/copilot/workspace/create" element={<CopilotCreateWorkspacePage />} />
 
+        {/* Create workspace */}
+        <Route
+          path="/copilot/workspace/create"
+          element={<CopilotCreateWorkspacePage />}
+        />
       </Routes>
     </BrowserRouter>
   );

@@ -1,88 +1,80 @@
 // src/components/InstantlyCopilotPage.jsx
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import InstantlyCopilotScreen from "./InstantlyCopilotScreen";
 import "../styles/Layout.css";
 import "../styles/InstantlyCopilot.css";
-import "../styles/CrmPage.css"; // org dropdown ke styles reuse
+import "../styles/CrmPage.css";
 
-/* ---- shared workspace storage (same keys EmailAccountsPage / CreateWorkspace me) ---- */
-const WORKSPACES_KEY = "ea_workspaces";
-const SELECTED_WORKSPACE_KEY = "ea_selected_workspace_id";
-
-function ensureDefaultWorkspaces() {
-  let list = [];
-  try {
-    const raw = localStorage.getItem(WORKSPACES_KEY);
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed)) list = parsed;
-    }
-  } catch (e) {
-    console.warn("Failed to read workspaces", e);
-  }
-
-  // agar kuch bhi nahi mila to ek default bana do
-  if (!list.length) {
-    list = [{ id: "ws-1", name: "My Organization" }];
-    try {
-      localStorage.setItem(WORKSPACES_KEY, JSON.stringify(list));
-    } catch (e) {
-      console.warn("Failed to write default workspaces", e);
-    }
-  }
-  return list;
-}
+import {
+  readWorkspaces,
+  getSelectedWorkspaceId,
+  setSelectedWorkspaceId,
+} from "../utils/workspaces";
 
 export default function InstantlyCopilotPage() {
   const navigate = useNavigate();
   const [orgOpen, setOrgOpen] = useState(false);
   const [reloading, setReloading] = useState(false);
 
-  // workspace list + selected id
-  const [workspaces] = useState(() => ensureDefaultWorkspaces());
-  const [activeWorkspaceId, setActiveWorkspaceId] = useState(() => {
-    const list = ensureDefaultWorkspaces();
-    let stored = null;
-    try {
-      stored = localStorage.getItem(SELECTED_WORKSPACE_KEY);
-    } catch (e) {
-      console.warn("Failed to read selected workspace", e);
-    }
-    if (stored && list.some((w) => w.id === stored)) return stored;
-    return list[0]?.id || "";
-  });
+  // dynamic workspaces state
+  const [workspaces, setWorkspaces] = useState(() => readWorkspaces());
+  const [activeWorkspaceId, setActiveWorkspaceId] = useState(() =>
+    getSelectedWorkspaceId(readWorkspaces())
+  );
 
-  const activeWorkspaceName =
-    workspaces.find((w) => w.id === activeWorkspaceId)?.name ||
-    "My Organization";
+  // keep list in sync after create (same tab) + other tab changes
+  useEffect(() => {
+    const refresh = () => {
+      const list = readWorkspaces();
+      setWorkspaces(list);
+      setActiveWorkspaceId((prev) => {
+        const next = getSelectedWorkspaceId(list);
+        return prev && list.some((w) => w.id === prev) ? prev : next;
+      });
+    };
 
-  const closeAllPopovers = () => {
-    setOrgOpen(false);
-  };
+    const onStorage = (e) => {
+      if (
+        e.key === "ea_workspaces" ||
+        e.key === "ea_selected_workspace_id"
+      ) {
+        refresh();
+      }
+    };
 
-  // koi workspace choose kare (My Organization ya koi naya)
+    window.addEventListener("storage", onStorage);
+    window.addEventListener("workspaces:changed", refresh);
+
+    return () => {
+      window.removeEventListener("storage", onStorage);
+      window.removeEventListener("workspaces:changed", refresh);
+    };
+  }, []);
+
+  const activeWorkspaceName = useMemo(() => {
+    return (
+      workspaces.find((w) => w.id === activeWorkspaceId)?.name ||
+      "My Organization"
+    );
+  }, [workspaces, activeWorkspaceId]);
+
+  const closeAllPopovers = () => setOrgOpen(false);
+
   const handleWorkspaceClick = (id) => {
     setOrgOpen(false);
     setActiveWorkspaceId(id);
-    try {
-      localStorage.setItem(SELECTED_WORKSPACE_KEY, id);
-    } catch (e) {
-      console.warn("Failed to store selected workspace id", e);
-    }
+    setSelectedWorkspaceId(id);
 
-    // small refresh animation
     setReloading(true);
     setTimeout(() => {
-      // same page par hi ho, fir bhi "refresh" feel ke liye
       navigate("/copilot");
       setReloading(false);
-    }, 900);
+    }, 600);
   };
 
   const handleCreateWorkspaceClick = () => {
-    // dropdown band + create page pe jao
     setOrgOpen(false);
     navigate("/copilot/workspace/create");
   };
@@ -91,9 +83,7 @@ export default function InstantlyCopilotPage() {
     <div className="ss-app">
       <Sidebar />
 
-      {/* bahar click -> dropdown close */}
       <main className="ss-main" onClick={closeAllPopovers}>
-        {/* TOP BAR */}
         <header className="ss-topbar">
           <div className="ss-top-left">
             <h1 className="ss-title">Instantly Copilot</h1>
@@ -106,9 +96,9 @@ export default function InstantlyCopilotPage() {
               <span className="ss-coin-icon">🪙</span>
               <span className="ss-coin-value">286</span>
             </div>
+
             <button className="ss-get-features-btn">Get All Features</button>
 
-            {/* My Organization dropdown (ab dynamic workspaces se) */}
             <div
               className="crm-org-wrapper"
               onClick={(e) => e.stopPropagation()}
@@ -142,7 +132,6 @@ export default function InstantlyCopilotPage() {
                     </button>
                   ))}
 
-                  {/* naya workspace create */}
                   <button
                     className="uni-org-item uni-org-create"
                     onClick={handleCreateWorkspaceClick}
@@ -155,7 +144,6 @@ export default function InstantlyCopilotPage() {
           </div>
         </header>
 
-        {/* BODY */}
         {reloading ? (
           <div className="copilot-body copilot-body--loading">
             <div className="copilot-loading-center">

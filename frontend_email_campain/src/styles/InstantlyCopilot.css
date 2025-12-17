@@ -1,28 +1,39 @@
-/* ========== GLOBAL LAYOUT FIX (for copilot) ========== */
-
-/* main area: topbar + body full viewport */
-.ss-main {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  overflow: hidden; /* spinner wale view pe extra scroll nahi aayega */
-}
-
-.ss-topbar {
-  flex-shrink: 0;
-}
-
-/* ========== LAYOUT ========== */
-
-/* COPILOT BODY: left panel + main */
-.copilot-body {
-  flex: 1;
-  display: flex;
-  width: 100%;
-  height: 100%;              /* full height of ss-main minus header */
-  padding: 24px 32px 40px 32px;
-  gap: 28px;
+/* =========================
+   BASE + FIX HORIZONTAL SCROLL
+========================= */
+* {
   box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* ✅ removes bottom horizontal scrollbar */
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  background: #020617;
+  color: #e5e7eb;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* =========================
+   COPILOT LAYOUT
+========================= */
+.copilot-body {
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  overflow: hidden; /* no scroll here */
   background: radial-gradient(
     circle at top left,
     #0b1120 0,
@@ -31,861 +42,583 @@
   );
 }
 
-/* loading state – centre everything */
-.copilot-body--loading {
-  align-items: center;
-  justify-content: center;
-}
-
-.copilot-loading-center {
-  text-align: center;
-}
-
-.copilot-loading-spinner {
-  display: block;
-  margin: 0 auto;
-}
-
-.copilot-loading-text {
-  margin-top: 12px;
-  font-size: 13px;
-  color: #9ca3af;
-  letter-spacing: 0.3px;
-}
-
-/* LEFT PANEL (new chat, memory, tasks, settings) */
+/* LEFT PANEL */
 .copilot-left {
   width: 280px;
+  flex: 0 0 280px;
+  max-width: 280px;
   border-right: 1px solid #111827;
-  padding-right: 20px;
+  padding: 24px 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow-y: auto;
+  overflow-x: hidden; /* ✅ */
 }
 
-/* ========== LEFT PANEL TOP ========== */
-
-.copilot-left-top {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-/* New chat button */
-.copilot-new-chat-btn {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 11px 16px;
-  border-radius: 12px;
-  border: 1px solid #1f2937;
-  background: linear-gradient(135deg, #020617 0%, #020617 40%, #111827 100%);
-  color: #f9fafb;
-  font-size: 13px;
-  cursor: pointer;
-  text-align: left;
-  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.7);
-  transition: all 0.18s ease-out;
-}
-
-.copilot-new-chat-btn span {
-  font-weight: 500;
-}
-
-.copilot-new-chat-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 14px 26px rgba(15, 23, 42, 0.9);
-  border-color: #6366f1;
-}
-
-/* active state for New chat tab */
-.copilot-new-chat-btn.is-active {
-  border-color: #6366f1;
-  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.6);
-}
-
-/* Menu */
-.copilot-menu {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.copilot-menu-item {
-  width: 100%;
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: none;
-  background: transparent;
-  color: #9ca3af;
-  font-size: 13px;
-  text-align: left;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.16s ease-out;
-}
-
-.copilot-menu-item::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  background: transparent;
-  transition: background 0.16s ease-out, transform 0.16s ease-out;
-}
-
-.copilot-menu-item:hover {
-  background: rgba(15, 23, 42, 0.9);
-  color: #e5e7eb;
-}
-
-.copilot-menu-item:hover::before {
-  background: #22c55e;
-  transform: scale(1.1);
-}
-
-/* active state for Memory / Tasks / Settings */
-.copilot-menu-item.is-active {
-  background: #020617;
-  color: #f9fafb;
-}
-
-/* LEFT BOTTOM TEXT */
-.copilot-left-bottom {
-  padding-bottom: 8px;
-}
-
-.copilot-empty-text {
-  font-size: 13px;
-  color: #9ca3af;
-  margin: 0 0 4px;
-}
-
-.copilot-empty-sub {
-  font-size: 12px;
-  color: #6b7280;
-  margin: 0;
-}
-
-/* ========== MAIN AREA ========== */
-
+/* MAIN PANEL */
 .copilot-main {
   flex: 1;
-  display: flex;
-  align-items: center; /* vertical center for normal view */
-  justify-content: center; /* horizontal center */
-}
-
-/* Center content – stretched like Instantly */
-.copilot-center {
+  min-width: 0; /* ✅ critical for flex overflow */
   width: 100%;
-  max-width: none;
-  text-align: center;
-  margin-top: 0;
-  padding: 0 180px;
-}
-
-@media (max-width: 1280px) {
-  .copilot-center {
-    padding: 0 120px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .copilot-body {
-    padding: 16px;
-  }
-  .copilot-left {
-    width: 230px;
-  }
-  .copilot-center {
-    padding: 0 60px;
-  }
-}
-
-/* Title */
-.copilot-title {
-  font-size: 34px;
-  font-weight: 600;
-  margin-bottom: 28px;
-  letter-spacing: 0.02em;
-  color: #f9fafb;
-  text-shadow: 0 0 18px rgba(15, 23, 42, 0.8);
-}
-
-/* ========== INPUT (HOME) ========== */
-
-.copilot-input-box {
-  background: radial-gradient(
-    circle at top left,
-    #020617 0,
-    #020617 40%,
-    #020617 100%
-  );
-  border-radius: 18px;
-  border: 1px solid #1f2937;
+  max-width: 100%;
   display: flex;
-  align-items: center;
-  padding: 16px 18px;
-  margin-bottom: 30px;
-  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.95);
-  transition: border 0.18s ease-out, box-shadow 0.18s ease-out,
-    transform 0.18s ease-out;
+
+  padding: 24px 32px;
+
+  overflow-y: auto;
+  overflow-x: hidden; /* ✅ */
 }
 
-.copilot-input-box:hover {
-  border-color: #4f46e5;
-  box-shadow: 0 18px 48px rgba(15, 23, 42, 1);
-  transform: translateY(-1px);
+.copilot-main--home {
+  align-items: flex-start;
+  justify-content: flex-start;
 }
-
-.copilot-input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: #e5e7eb;
-  font-size: 14px;
-}
-
-.copilot-input::placeholder {
-  color: #6b7280;
-}
-
-/* Input right actions */
-.copilot-input-actions {
-  display: flex;
-  gap: 8px;
-}
-
-.copilot-mic-btn,
-.copilot-send-btn {
-  border-radius: 999px;
-  border: none;
-  padding: 8px 11px;
-  cursor: pointer;
-  background: #020617;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
-  transition: all 0.16s ease-out;
-}
-
-/* mic */
-.copilot-mic-btn:hover {
-  background: #111827;
-  transform: translateY(-1px);
-}
-
-/* send */
-.copilot-send-btn {
-  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 40%, #7c3aed 100%);
-  color: white;
-  box-shadow: 0 10px 26px rgba(79, 70, 229, 0.6);
-}
-
-.copilot-send-btn:hover {
-  transform: translateY(-1px) scale(1.03);
-  box-shadow: 0 14px 32px rgba(79, 70, 229, 0.85);
-}
-
-/* ========== CHIPS (HOME) ========== */
-
-.copilot-chip-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-  margin-bottom: 12px;
-}
-
-.copilot-chip {
-  border-radius: 999px;
-  border: 1px solid #374151;
-  background: radial-gradient(
-    circle at top left,
-    #020617 0,
-    #020617 40%,
-    #020617 100%
-  );
-  color: #e5e7eb;
-  font-size: 13px;
-  padding: 8px 18px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.75);
-  transition: all 0.16s ease-out;
-}
-
-.copilot-chip:hover {
-  border-color: #4f46e5;
-  background: #111827;
-  transform: translateY(-1px);
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 1);
-}
-
-/* ========== MEMORY VIEW ========== */
 
 .copilot-main--memory {
   align-items: flex-start;
   justify-content: center;
 }
 
-/* Center block – original jaisa */
-.copilot-memory {
+/* center content width */
+.copilot-main > * {
   width: 100%;
   max-width: 980px;
-  margin: 80px auto 0;
-  padding: 0;
-  text-align: center;
+  margin: 0 auto;
+  min-width: 0; /* ✅ */
 }
 
-@media (max-width: 1024px) {
-  .copilot-memory {
-    max-width: 100%;
-    margin-top: 64px;
-    padding: 0 40px;
-  }
-}
-
-.copilot-memory-title {
-  font-size: 32px;
-  font-weight: 600;
-  margin-bottom: 10px;
-  color: #f9fafb;
-}
-
-.copilot-memory-sub {
-  margin: 0 0 32px;
-  font-size: 14px;
-  color: #9ca3af;
-}
-
-/* cards row – DESKTOP PAR HAMESHA ROW */
-.copilot-memory-grid {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 24px;
-  margin-bottom: 28px;
-  flex-wrap: nowrap;
+/* =========================
+   LEFT MENU
+========================= */
+.copilot-new-chat-btn {
   width: 100%;
-}
-
-/* sirf chhoti screen par wrap */
-@media (max-width: 900px) {
-  .copilot-memory-grid {
-    flex-wrap: wrap;
-  }
-}
-
-.copilot-memory-card {
-  flex: 0 0 440px;
-  max-width: 440px;
-  background: #020617;
-  border-radius: 16px;
-  border: 1px solid #111827;
-  padding: 26px 24px 24px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.95);
-  transition: all 0.18s ease-out;
-}
-
-.copilot-memory-card:hover {
-  border-color: #4f46e5;
-  transform: translateY(-2px);
-  box-shadow: 0 18px 48px rgba(15, 23, 42, 1);
-}
-
-.copilot-memory-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 999px;
-  background: rgba(37, 99, 235, 0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  margin-bottom: 16px;
-}
-
-.copilot-memory-card-title {
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 8px;
-  color: #f9fafb;
-}
-
-.copilot-memory-card-text {
-  font-size: 13px;
-  color: #9ca3af;
-  margin: 0;
-}
-
-/* edit manually link */
-.copilot-memory-edit {
-  background: transparent;
-  border: none;
-  font-size: 13px;
-  color: #38bdf8;
-  cursor: pointer;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  margin-top: 4px;
-}
-
-.copilot-memory-edit:hover {
-  color: #0ea5e9;
-}
-
-/* ========== MODAL (Read my website) ========== */
-
-.copilot-modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(15, 23, 42, 0.75); /* dark overlay */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999; /* sab ke upar */
-}
-
-/* popup box */
-.copilot-modal {
-  width: 640px;
-  max-width: 95%;
-  background: #020617;
-  border-radius: 18px;
-  border: 1px solid #111827;
-  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.95);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-/* header */
-.copilot-modal-header {
-  padding: 18px 24px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #111827;
-}
-
-.copilot-modal-title {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 600;
-  color: #f9fafb;
-}
-
-.copilot-modal-close {
-  background: transparent;
-  border: none;
-  color: #9ca3af;
-  font-size: 18px;
-  cursor: pointer;
-  padding: 4px;
-}
-
-.copilot-modal-close:hover {
+  background: rgba(2, 6, 23, 0.6);
+  border: 1px solid #1f2937;
   color: #e5e7eb;
-}
-
-/* body */
-.copilot-modal-body {
-  padding: 20px 24px 24px;
-}
-
-.copilot-modal-text {
-  margin: 0 0 16px;
-  font-size: 14px;
-  color: #9ca3af;
-  text-align: left;
-}
-
-.copilot-modal-input-wrap {
   border-radius: 12px;
-  border: 1px solid #1d4ed8;
-  background: #020617;
   padding: 10px 12px;
-}
-
-.copilot-modal-input {
-  width: 100%;
-  border: none;
-  background: transparent;
-  outline: none;
-  color: #e5e7eb;
-  font-size: 14px;
-}
-
-.copilot-modal-input::placeholder {
-  color: #6b7280;
-}
-
-/* footer */
-.copilot-modal-footer {
-  padding: 14px 24px 18px;
-  border-top: 1px solid #111827;
+  font-weight: 700;
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.copilot-new-chat-btn.is-active {
+  border-color: rgba(59, 130, 246, 0.6);
+}
+
+.copilot-menu {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
 }
 
-.copilot-modal-btn {
-  border-radius: 999px;
+.copilot-menu-item {
+  width: 100%;
+  text-align: left;
+  background: transparent;
   border: 1px solid transparent;
-  padding: 8px 18px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.16s ease-out;
-}
-
-/* Cancel */
-.copilot-modal-btn-cancel {
-  background: #020617;
-  color: #e5e7eb;
-  border-color: #374151;
-}
-
-.copilot-modal-btn-cancel:hover {
-  background: #111827;
-}
-
-/* Extract */
-.copilot-modal-btn-primary {
-  background: #2563eb;
-  color: white;
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.7);
-}
-
-.copilot-modal-btn-primary:hover {
-  background: #1d4ed8;
-  box-shadow: 0 10px 26px rgba(37, 99, 235, 0.9);
-}
-
-/* file picker area inside "Read a PDF or text file" modal  */
-.copilot-modal-filepicker {
-  margin-top: 12px;
+  color: #9ca3af;
   border-radius: 12px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.copilot-menu-item:hover {
+  background: rgba(2, 6, 23, 0.55);
+  border-color: #1f2937;
+  color: #e5e7eb;
+}
+
+.copilot-menu-item.is-active {
+  background: rgba(2, 6, 23, 0.7);
+  border-color: #1f2937;
+  color: #ffffff;
+}
+
+.copilot-empty-text {
+  margin: 0;
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+.copilot-empty-sub {
+  margin: 6px 0 0;
+  color: #6b7280;
+  font-size: 12px;
+}
+
+/* =========================
+   HOME (basic - optional)
+========================= */
+.copilot-center {
+  width: 100%;
+}
+
+/* =========================
+   MEMORY OVERVIEW
+========================= */
+.copilot-memory {
+  width: 100%;
+  padding-top: 40px;
+  text-align: center;
+}
+
+.copilot-memory-title {
+  font-size: 40px;
+  margin: 0 0 10px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.copilot-memory-sub {
+  margin: 0 auto 26px;
+  max-width: 720px;
+  color: #9ca3af;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.copilot-memory-grid {
+  margin: 0 auto;
+  max-width: 920px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.copilot-memory-card {
   border: 1px solid #1f2937;
-  background: #020617;
-  padding: 16px 12px;
+  border-radius: 16px;
+  background: rgba(2, 6, 23, 0.55);
+  padding: 26px 22px;
+  cursor: pointer;
+  text-align: center;
+  min-height: 170px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+.copilot-memory-card:hover {
+  border-color: rgba(59, 130, 246, 0.6);
+}
+
+.copilot-memory-icon {
+  width: 46px;
+  height: 46px;
+  margin: 0 auto 14px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.18);
+}
+
+.copilot-memory-card-title {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.copilot-memory-card-text {
+  margin: 0 auto;
+  max-width: 340px;
+  color: #9ca3af;
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
+.copilot-memory-edit {
+  margin-top: 20px;
+  background: transparent;
+  border: none;
+  color: #3b82f6;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.copilot-memory-edit:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   MEMORY FLOW (tabs + screens)
+========================= */
+.memory-flow {
+  width: 100%;
+  padding-top: 18px;
+}
+
+.memory-tabs {
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto 22px;
+  display: flex;
+  gap: 28px;
+  border-bottom: 1px solid #111827;
+  padding-bottom: 10px;
+}
+
+.memory-tab {
+  border: none;
+  background: transparent;
+  color: #9ca3af;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 10px 0;
+  position: relative;
+}
+
+.memory-tab:hover {
+  color: #e5e7eb;
+}
+
+.memory-tab-active {
+  color: #3b82f6;
+}
+
+.memory-tab-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -11px;
+  height: 3px;
+  background: #3b82f6;
+  border-radius: 999px;
+}
+
+/* titles */
+.memory-business-title,
+.customer-profiles-title,
+.guidance-title {
+  margin: 0 0 6px;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.memory-business-sub,
+.customer-profiles-sub,
+.guidance-sub {
+  margin: 0 0 18px;
+  color: #9ca3af;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* =========================
+   BUSINESS DETAILS
+========================= */
+.memory-business {
+  width: 100%;
+}
+
+.memory-business-inner {
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.memory-business-form {
+  width: 100%;
+  max-width: 520px;
+  padding-bottom: 140px; /* space for sticky footer */
+}
+
+.memory-field {
+  margin-bottom: 16px;
+}
+
+.memory-label {
+  display: block;
+  font-size: 12px;
+  color: #e5e7eb;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.memory-input,
+.memory-textarea {
+  width: 100%;
+  background: rgba(2, 6, 23, 0.55);
+  border: 1px solid #1f2937;
+  border-radius: 12px;
+  color: #f9fafb;
+  padding: 12px;
+  font-size: 14px;
+  outline: none;
+}
+
+.memory-input:focus,
+.memory-textarea:focus {
+  border-color: rgba(59, 130, 246, 0.7);
+}
+
+.memory-textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+/* =========================
+   CUSTOMER PROFILES
+========================= */
+.customer-profiles-wrap,
+.guidance-wrap {
+  width: 100%;
+}
+
+.customer-profiles-inner,
+.guidance-inner {
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+  padding-bottom: 140px;
+}
+
+.customer-profiles-addbox {
+  width: 100%;
+  max-width: 760px;
+  border: 1px solid #1f2937;
+  background: transparent;
+  color: #60a5fa;
+  padding: 16px;
+  border-radius: 12px;
+  font-weight: 800;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
 }
 
-.copilot-modal-file-btn {
-  padding: 8px 24px;
-  border-radius: 999px;
-  border: 1px solid #2563eb;
-  background: #1d4ed8;
-  color: #e5e7eb;
-  font-size: 14px;
-  font-weight: 500;
+.customer-profiles-addbox:hover {
+  background: rgba(96, 165, 250, 0.06);
+  border-color: rgba(96, 165, 250, 0.6);
+}
+
+.customer-profiles-plus {
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* =========================
+   GUIDANCE (buttons + dropdown)
+========================= */
+.guidance-actions {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.guidance-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-weight: 800;
   cursor: pointer;
-  transition: all 0.16s ease-out;
+  border: 1px solid #1f2937;
+  background: rgba(2, 6, 23, 0.55);
+  color: #e5e7eb;
 }
 
-.copilot-modal-file-btn:hover {
-  background: #2563eb;
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.6);
+.guidance-btn-primary {
+  color: #60a5fa;
+  border-color: rgba(96, 165, 250, 0.45);
 }
 
-/* selected file name text */
-.copilot-modal-filename {
-  margin: 10px 2px 0;
-  font-size: 13px;
-  color: #9ca3af;
-  text-align: left;
-  word-break: break-all;
+.guidance-btn-primary:hover {
+  background: rgba(96, 165, 250, 0.06);
 }
 
-/* ---------- MAIN AREA: settings alignment ---------- */
-
-.copilot-main--settings {
-  align-items: flex-start;
-  justify-content: flex-start;
+.guidance-btn-secondary:hover {
+  border-color: rgba(148, 163, 184, 0.6);
 }
 
-/* ---------- SETTINGS VIEW ---------- */
+.guidance-dropdown {
+  position: relative;
+}
 
-.copilot-settings {
+.guidance-caret {
+  margin-left: 4px;
+  opacity: 0.9;
+  transition: transform 0.15s ease;
+}
+
+.guidance-caret.is-open {
+  transform: rotate(180deg);
+}
+
+.guidance-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  min-width: 260px;
+  border-radius: 14px;
+  border: 1px solid #1f2937;
+  background: rgba(2, 6, 23, 0.95);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+  z-index: 50;
+}
+
+.guidance-menu-item {
   width: 100%;
-  max-width: 960px;
-  margin: 72px auto 0;
-  padding: 0 48px 80px;
   text-align: left;
+  padding: 12px 14px;
+  border: none;
+  background: transparent;
+  color: #e5e7eb;
+  cursor: pointer;
+  font-weight: 700;
 }
 
-@media (max-width: 1024px) {
-  .copilot-settings {
-    margin-top: 64px;
-    padding: 0 32px 64px;
-  }
+.guidance-menu-item:hover {
+  background: rgba(96, 165, 250, 0.08);
 }
 
-.copilot-settings-title {
-  font-size: 22px;
-  font-weight: 500;
-  color: #f9fafb;
-  margin: 0 0 6px;
-}
-
-.copilot-settings-sub {
-  margin: 0 0 28px;
-  font-size: 14px;
-  color: #9ca3af;
-}
-
-/* cards */
-
-.copilot-settings-card {
-  border-radius: 16px;
-  border: 1px solid #111827;
-  background: #020617;
-  padding: 18px 24px;
-  margin-bottom: 16px;
-  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.8);
-}
-
-.copilot-settings-card-main {
+/* =========================
+   ✅ FOOTER (sticky)
+========================= */
+.memory-sticky-footer {
+  position: sticky;
+  bottom: 18px;
+  z-index: 30;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-}
+  gap: 14px;
 
-.copilot-settings-card-title {
-  margin: 0 0 4px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #f9fafb;
-}
+  width: 100%;
+  max-width: 520px;
+  margin-top: 18px;
 
-.copilot-settings-card-text {
-  margin: 0;
-  font-size: 13px;
-  color: #9ca3af;
-}
+  padding: 12px 12px;
+  border-radius: 16px;
 
-/* analytics toggle pill */
-
-.copilot-settings-toggle-group {
-  display: inline-flex;
-  border-radius: 999px;
-  background: #020617;
+  background: rgba(2, 6, 23, 0.72);
   border: 1px solid #1f2937;
-  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
 }
 
-.copilot-settings-toggle {
-  border: none;
-  background: transparent;
-  padding: 6px 18px;
-  font-size: 13px;
-  color: #e5e7eb;
-  cursor: pointer;
-  transition: all 0.16s ease-out;
+/* wide footer for customer profiles + guidance */
+.memory-sticky-footer--wide {
+  max-width: 780px;
 }
 
-.copilot-settings-toggle.is-left {
-  border-right: 1px solid #1f2937;
-}
-
-.copilot-settings-toggle.is-active {
-  background: #16a34a;
-  color: #f9fafb;
-  box-shadow: 0 8px 22px rgba(22, 163, 74, 0.7);
-}
-
-.copilot-settings-toggle.is-active.is-left {
-  border-right-color: transparent;
-}
-
-/* slack button */
-
-.copilot-settings-slack-btn {
-  padding: 8px 20px;
-  border-radius: 999px;
-  border: 1px solid #2563eb;
-  background: #020617;
-  color: #bfdbfe;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.16s ease-out;
-}
-
-.copilot-settings-slack-btn:hover {
-  background: #1d4ed8;
-  color: #f9fafb;
-  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.8);
-}
-
-.copilot-settings-slack-btn.is-connected {
-  background: #16a34a;
-  border-color: #16a34a;
-  color: #e5f9f0;
-}
-
-/* save button */
-
-.copilot-settings-footer {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 24px;
-}
-
-.copilot-settings-save {
-  padding: 9px 26px;
-  border-radius: 10px;
-  border: none;
-  background: #2563eb;
-  color: #f9fafb;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  box-shadow: 0 10px 26px rgba(37, 99, 235, 0.8);
-  transition: all 0.16s ease-out;
-}
-
-.copilot-settings-save:hover {
-  background: #1d4ed8;
-  box-shadow: 0 12px 32px rgba(37, 99, 235, 1);
-}
-/* ---------- Create Workspace page ---------- */
-
-.ss-topbar--minimal {
-  border-bottom: 1px solid #111827;
-  box-shadow: none;
-}
-
-.cw-back-btn {
-  background: transparent;
-  border: none;
-  color: #e5e7eb;
-  font-size: 14px;
-  cursor: pointer;
-  padding: 10px 4px;
-}
-
-.cw-back-btn:hover {
-  color: #f9fafb;
-}
-
-/* center content area */
-.cw-body {
-  flex: 1;
+.footer-pill {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 58px 55px 74px;
-  background: #020617;
-  margin-left:430px;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(2, 6, 23, 0.7);
+  border: 1px solid #1f2937;
 }
 
-/* card */
-.cw-card {
-  width: 100%;
-  max-width: 640px;
-  background: #020617;
-  border-radius: 18px;
-  border: 1px solid #111827;
-  padding: 40px 36px 32px;
-  box-shadow: 0 32px 80px rgba(15, 23, 42, 0.9);
-}
-
-.cw-title {
-  margin: 0 0 6px;
-  font-size: 26px;
-  font-weight: 600;
-  color: #f9fafb;
-}
-
-.cw-sub {
-  margin: 0 0 28px;
-  font-size: 14px;
-  color: #9ca3af;
-}
-
-.cw-label {
-  display: block;
-  font-size: 13px;
-  color: #9ca3af;
-  margin-bottom: 6px;
-}
-
-.cw-input {
-  width: 100%;
-  border-radius: 12px;
-  border: 1px solid #374151;
-  background: #020617;
-  color: #f9fafb;
-  padding: 14px 16px;
-  font-size: 16px;
-  outline: none;
-  box-sizing: border-box;
-}
-
-.cw-input::placeholder {
-  color: #6b7280;
-}
-
-.cw-input:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 1px #2563eb;
-}
-
-/* buttons row */
-.cw-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 16px;
-  margin-top: 28px;
-}
-
-.cw-btn {
-  border-radius: 10px;
-  padding: 10px 24px;
-  font-size: 14px;
-  cursor: pointer;
+.footer-pill-btn {
   border: none;
-  transition: all 0.16s ease-out;
-}
-
-.cw-btn-primary {
-  background: #2563eb;
-  color: #f9fafb;
-  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.8);
-}
-
-.cw-btn-primary:hover:not(:disabled) {
-  background: #1d4ed8;
-  box-shadow: 0 14px 34px rgba(37, 99, 235, 1);
-}
-
-.cw-btn-secondary {
   background: transparent;
+  color: #e5e7eb;
+  font-weight: 800;
+  cursor: pointer;
+  padding: 6px 4px;
+}
+
+.footer-pill-icon {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  border: 1px solid #1f2937;
+  background: rgba(2, 6, 23, 0.75);
+  cursor: pointer;
   color: #e5e7eb;
 }
 
-.cw-btn-secondary:hover:not(:disabled) {
-  background: #111827;
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
-.cw-btn:disabled {
-  opacity: 0.6;
-  cursor: default;
+.footer-back {
+  border: none;
+  background: transparent;
+  color: #60a5fa;
+  font-weight: 800;
+  cursor: pointer;
+  padding: 10px 6px;
+}
+
+.footer-back:hover {
+  color: #93c5fd;
+}
+
+.memory-next-btn {
+  background: #2563eb;
+  border: none;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.memory-next-btn:hover {
+  filter: brightness(1.06);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 980px) {
+  .copilot-left {
+    width: 250px;
+    flex: 0 0 250px;
+    max-width: 250px;
+  }
+
+  .copilot-main {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 860px) {
+  .copilot-memory-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .memory-tabs {
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  .memory-business-form,
+  .memory-sticky-footer,
+  .memory-sticky-footer--wide {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 760px) {
+  .copilot-body {
+    flex-direction: column;
+  }
+
+  .copilot-left {
+    width: 100%;
+    max-width: 100%;
+    flex: 0 0 auto;
+    border-right: none;
+    border-bottom: 1px solid #111827;
+  }
 }

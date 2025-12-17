@@ -5,32 +5,7 @@ import Sidebar from "./Sidebar";
 import "../styles/Layout.css";
 import "../styles/InstantlyCopilot.css";
 
-/* ------ shared storage helpers (same keys EmailAccountsPage me bhi use honge) ------ */
-const WORKSPACES_KEY = "ea_workspaces";
-const SELECTED_WORKSPACE_KEY = "ea_selected_workspace_id";
-
-function ensureDefaultWorkspaces() {
-  let list = [];
-  try {
-    const raw = localStorage.getItem(WORKSPACES_KEY);
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed)) list = parsed;
-    }
-  } catch (e) {
-    console.warn("Failed to read workspaces from storage", e);
-  }
-
-  if (!list.length) {
-    list = [{ id: "ws-1", name: "My Organization" }];
-    try {
-      localStorage.setItem(WORKSPACES_KEY, JSON.stringify(list));
-    } catch (e) {
-      console.warn("Failed to write default workspaces", e);
-    }
-  }
-  return list;
-}
+import { createWorkspace } from "../utils/workspaces";
 
 export default function CopilotCreateWorkspacePage() {
   const navigate = useNavigate();
@@ -41,33 +16,17 @@ export default function CopilotCreateWorkspacePage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const trimmed = name.trim();
-    if (!trimmed || saving) return;
+    if (!name.trim() || saving) return;
 
     setSaving(true);
 
-    // 1) Purani list lao (agar empty hai to default bana dega)
-    const current = ensureDefaultWorkspaces();
+    // create + select workspace
+    createWorkspace(name);
 
-    // 2) Naya workspace object
-    const newId = "ws-" + Date.now();
-    const newWorkspace = { id: newId, name: trimmed };
-
-    const updated = [...current, newWorkspace];
-
-    // 3) localStorage me save + selected workspace update
-    try {
-      localStorage.setItem(WORKSPACES_KEY, JSON.stringify(updated));
-      localStorage.setItem(SELECTED_WORKSPACE_KEY, newId);
-    } catch (err) {
-      console.warn("Failed to save workspace", err);
-    }
-
-    // 4) Thoda sa "processing" feel, fir Email Accounts page pe jao
+    // Continue -> Email Accounts page
     setTimeout(() => {
-      setSaving(false);
       navigate("/email-accounts");
-    }, 700);
+    }, 500);
   };
 
   return (
@@ -75,18 +34,12 @@ export default function CopilotCreateWorkspacePage() {
       <Sidebar />
 
       <main className="ss-main">
-        {/* upar minimal topbar with Back */}
         <header className="ss-topbar ss-topbar--minimal">
-          <button
-            type="button"
-            className="cw-back-btn"
-            onClick={goBack}
-          >
+          <button type="button" className="cw-back-btn" onClick={goBack}>
             ← Back
           </button>
         </header>
 
-        {/* center content */}
         <div className="cw-body">
           <form className="cw-card" onSubmit={handleSubmit}>
             <h2 className="cw-title">Let&apos;s create a new workspace</h2>
@@ -95,6 +48,7 @@ export default function CopilotCreateWorkspacePage() {
             <label className="cw-label" htmlFor="workspace-name">
               Workspace Name
             </label>
+
             <input
               id="workspace-name"
               className="cw-input"

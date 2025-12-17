@@ -24,25 +24,35 @@ import {
  *    taaki hamesha lightning + badge (CRM icon) hi active dikhe.
  */
 function getKeyFromPath(pathname) {
-  if (pathname === "/copilot") return "copilot";
-  if (pathname === "/supersearch") return "supersearch";
-  if (pathname === "/email-accounts") return "email";
-  if (pathname === "/campaigns") return "campaigns";
-  if (pathname === "/unibox") return "unibox";
-  if (pathname === "/analytics") return "analytics";
+  // ✅ Copilot ke ALL subroutes ( /copilot/memory/... ) bhi copilot active rakhenge
+  if (pathname === "/copilot" || pathname.startsWith("/copilot/"))
+    return "copilot";
+
+  if (pathname === "/supersearch" || pathname.startsWith("/supersearch/"))
+    return "supersearch";
+
+  if (pathname === "/email-accounts" || pathname.startsWith("/email-accounts/"))
+    return "email";
+
+  if (pathname === "/campaigns" || pathname.startsWith("/campaigns/"))
+    return "campaigns";
+
+  if (pathname === "/unibox" || pathname.startsWith("/unibox/"))
+    return "unibox";
+
+  if (pathname === "/analytics" || pathname.startsWith("/analytics/"))
+    return "analytics";
 
   // 🔵 CRM ke saare routes
   if (pathname.startsWith("/crm")) return "inbox";
 
-  // fallback (agar kuch aur ho)
-  return "campaigns";
+  // ✅ fallback: campaigns nahi, copilot (safe default)
+  return "copilot";
 }
 
 export default function Sidebar({ inboxCount }) {
   const location = useLocation();
-  const [activeKey, setActiveKey] = useState(
-    getKeyFromPath(location.pathname)
-  );
+  const [activeKey, setActiveKey] = useState(getKeyFromPath(location.pathname));
 
   useEffect(() => {
     setActiveKey(getKeyFromPath(location.pathname));
@@ -54,8 +64,6 @@ export default function Sidebar({ inboxCount }) {
     (extra ? " " + extra : "");
 
   // ✅ CRM badge:
-  //    1) agar prop aaya hai to wahi use karo
-  //    2) nahi aaya to default 22 (aapke mock inbox ke mails)
   const crmBadgeValue =
     typeof inboxCount === "number" && !Number.isNaN(inboxCount)
       ? inboxCount
@@ -138,10 +146,7 @@ export default function Sidebar({ inboxCount }) {
           onClick={() => setActiveKey("inbox")}
         >
           <Zap className="ss-icon" />
-          {/* badge sirf tab dikhana jab value > 0 ho */}
-          {crmBadgeValue > 0 && (
-            <span className="ss-badge">{crmBadgeValue}</span>
-          )}
+          {crmBadgeValue > 0 && <span className="ss-badge">{crmBadgeValue}</span>}
         </Link>
       </div>
 
