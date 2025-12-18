@@ -3,9 +3,7 @@
    NOTE: Replace the whole file with this.
 ========================================= */
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 .ss-app {
   height: 100vh;
@@ -37,10 +35,7 @@
   background: rgba(2, 6, 23, 0.22);
 }
 
-.ss-top-left {
-  display: flex;
-  align-items: center;
-}
+.ss-top-left { display: flex; align-items: center; }
 
 .ss-title {
   margin: 0;
@@ -115,10 +110,7 @@
   cursor: pointer;
   white-space: nowrap;
 }
-
-.ss-get-features-btn:hover {
-  filter: brightness(1.06);
-}
+.ss-get-features-btn:hover { filter: brightness(1.06); }
 
 .ss-org-btn {
   border: 1px solid rgba(148, 163, 184, 0.18);
@@ -131,7 +123,6 @@
   cursor: pointer;
   white-space: nowrap;
 }
-
 .ss-org-btn:hover {
   border-color: rgba(148, 163, 184, 0.35);
   background: rgba(148, 163, 184, 0.08);
@@ -174,14 +165,9 @@
   color: #e5e7eb;
 }
 
-.ss-filters-actions {
-  display: flex;
-  gap: 10px;
-}
+.ss-filters-actions { display: flex; gap: 10px; }
 
 .ss-mini-icon-btn {
-  width: 34px;
-  height: 34px;
   border-radius: 10px;
   border: 1px solid rgba(148, 163, 184, 0.18);
   background: rgba(2, 6, 23, 0.25);
@@ -190,7 +176,6 @@
   display: grid;
   place-items: center;
 }
-
 .ss-mini-icon-btn:hover {
   color: #ffffff;
   border-color: rgba(59, 130, 246, 0.35);
@@ -208,15 +193,8 @@
   font-size: 13px;
 }
 
-.ss-skip-left {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.ss-skip-icon {
-  opacity: 0.9;
-}
+.ss-skip-left { display: inline-flex; align-items: center; gap: 10px; }
+.ss-skip-icon { opacity: 0.9; }
 
 /* Toggle */
 .ss-switch {
@@ -245,56 +223,31 @@
   background: rgba(34, 197, 94, 0.45);
   border-color: rgba(34, 197, 94, 0.55);
 }
-
 .ss-switch-on .ss-switch-knob {
   transform: translateX(20px);
   background: #ffffff;
 }
 
-/* Filter rows (no pills — full width like screenshot) */
-.ss-filter-list {
-  display: flex;
-  flex-direction: column;
-  margin-top: 4px;
-}
-
-.ss-filter-row {
-  border-top: 1px solid rgba(148, 163, 184, 0.10);
-}
-
-.ss-filter-row:first-child {
-  border-top: 1px solid rgba(148, 163, 184, 0.18);
-}
+/* Filter list */
+.ss-filter-list { display: flex; flex-direction: column; margin-top: 4px; }
+.ss-filter-row { border-top: 1px solid rgba(148, 163, 184, 0.10); }
+.ss-filter-row:first-child { border-top: 1px solid rgba(148, 163, 184, 0.18); }
 
 .ss-filter-btn {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   padding: 14px 10px;
   background: transparent;
   border: none;
   cursor: pointer;
-
   color: rgba(226, 232, 240, 0.82);
 }
+.ss-filter-btn:hover { background: rgba(148, 163, 184, 0.06); }
 
-.ss-filter-btn:hover {
-  background: rgba(148, 163, 184, 0.06);
-}
-
-.ss-filter-left {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 0;
-}
-
-.ss-filter-ico {
-  color: rgba(226, 232, 240, 0.62);
-  flex: 0 0 auto;
-}
+.ss-filter-left { display: inline-flex; align-items: center; gap: 12px; min-width: 0; }
+.ss-filter-ico { color: rgba(226, 232, 240, 0.62); flex: 0 0 auto; }
 
 .ss-filter-label {
   font-size: 14px;
@@ -304,36 +257,19 @@
   text-overflow: ellipsis;
 }
 
-.ss-filter-right {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  flex: 0 0 auto;
-}
+.ss-filter-right { display: inline-flex; align-items: center; gap: 10px; flex: 0 0 auto; }
 
 .ss-filter-chevron {
   color: rgba(226, 232, 240, 0.55);
   transition: transform 0.15s ease;
 }
+.ss-filter-chevron.is-open { transform: rotate(180deg); }
 
-.ss-filter-chevron.is-open {
-  transform: rotate(180deg);
-}
-
-.ss-upload-dot {
-  color: rgba(226, 232, 240, 0.6);
-  font-size: 14px;
-  line-height: 1;
-}
+.ss-upload-dot { color: rgba(226, 232, 240, 0.6); font-size: 14px; line-height: 1; }
 
 /* Expanded filter content */
-.ss-filter-expand {
-  padding: 0 10px 12px;
-}
-
-.ss-filter-expand-inner {
-  padding: 10px 0 2px;
-}
+.ss-filter-expand { padding: 0 10px 12px; }
+.ss-filter-expand-inner { padding: 10px 0 2px; }
 
 .ss-filter-input {
   width: 100%;
@@ -345,39 +281,37 @@
   outline: none;
   font-size: 13px;
 }
-
-.ss-filter-input::placeholder {
-  color: rgba(148, 163, 184, 0.55);
-}
-
-.ss-filter-input:focus {
-  border-color: rgba(59, 130, 246, 0.55);
-}
+.ss-filter-input::placeholder { color: rgba(148, 163, 184, 0.55); }
+.ss-filter-input:focus { border-color: rgba(59, 130, 246, 0.55); }
 
 /* =========================
-   RIGHT MAIN PANEL
+   RIGHT MAIN PANEL (FINAL FIX)
+   ✅ centered + stretched like real screen
 ========================= */
 .ss-main-panel {
   flex: 1;
   min-width: 0;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 28px;
+  flex-direction: column;     /* ✅ IMPORTANT */
+  align-items: center;        /* ✅ horizontally center */
+  justify-content: flex-start;/* ✅ top aligned */
+  padding: 88px 28px 28px;    /* ✅ spacing like real */
   overflow: auto;
+  margin-left: 95px;
 }
 
 .ss-main-inner {
-  width: 100%;
-  max-width: 900px;
+  width: 730px;
+  /* max-width: 980px;            */
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 50px;
 }
 
 .ss-main-heading {
   margin: 0 0 18px;
-  font-size: 32px;
+  font-size: 34px;            /* closer to real */
   font-weight: 900;
   color: rgba(226, 232, 240, 0.92);
   text-align: center;
@@ -385,7 +319,7 @@
 
 /* Search bar */
 .ss-search-wrap {
-  width: min(760px, 100%);
+  width: min(860px, 100%);    /* ✅ stretch more */
   display: flex;
   align-items: center;
   gap: 10px;
@@ -396,10 +330,7 @@
   margin-bottom: 18px;
 }
 
-.ss-search-ico {
-  color: rgba(148, 163, 184, 0.7);
-  flex: 0 0 auto;
-}
+.ss-search-ico { color: rgba(148, 163, 184, 0.7); flex: 0 0 auto; }
 
 .ss-search-input {
   flex: 1;
@@ -410,10 +341,7 @@
   color: rgba(226, 232, 240, 0.9);
   font-size: 13px;
 }
-
-.ss-search-input::placeholder {
-  color: rgba(148, 163, 184, 0.55);
-}
+.ss-search-input::placeholder { color: rgba(148, 163, 184, 0.55); }
 
 /* AI Search button */
 .ss-ai-btn {
@@ -429,14 +357,11 @@
   cursor: pointer;
   white-space: nowrap;
 }
-
-.ss-ai-btn:hover {
-  filter: brightness(1.06);
-}
+.ss-ai-btn:hover { filter: brightness(1.06); }
 
 /* Big card */
 .ss-big-card {
-  width: min(760px, 100%);
+  width: min(860px, 100%);    /* ✅ stretch more */
   border-radius: 12px;
   border: 1px solid rgba(148, 163, 184, 0.18);
   background: rgba(2, 6, 23, 0.25);
@@ -445,13 +370,9 @@
   overflow: hidden;
 }
 
-.ss-big-divider {
-  background: rgba(148, 163, 184, 0.18);
-}
+.ss-big-divider { background: rgba(148, 163, 184, 0.18); }
 
-.ss-big-col {
-  padding: 18px 18px 22px;
-}
+.ss-big-col { padding: 18px 18px 22px; }
 
 .ss-big-head {
   display: inline-flex;
@@ -463,9 +384,7 @@
   margin-bottom: 18px;
 }
 
-.ss-big-ico {
-  color: rgba(226, 232, 240, 0.7);
-}
+.ss-big-ico { color: rgba(226, 232, 240, 0.7); }
 
 .ss-big-empty {
   color: rgba(148, 163, 184, 0.75);
@@ -477,11 +396,7 @@
 /* =========================
    LEAD LISTS TAB PLACEHOLDER
 ========================= */
-.ss-leadlists {
-  flex: 1;
-  overflow: auto;
-  padding: 26px 24px;
-}
+.ss-leadlists { flex: 1; overflow: auto; padding: 26px 24px; }
 
 .ss-leadlists-title {
   margin: 0 0 6px;
@@ -500,16 +415,11 @@
    RESPONSIVE
 ========================= */
 @media (max-width: 980px) {
-  .ss-filters {
-    width: 320px;
-    flex: 0 0 320px;
-  }
+  .ss-filters { width: 320px; flex: 0 0 320px; }
 }
 
 @media (max-width: 860px) {
-  .ss-body {
-    flex-direction: column;
-  }
+  .ss-body { flex-direction: column; }
 
   .ss-filters {
     width: 100%;
@@ -519,33 +429,18 @@
     max-height: 48vh;
   }
 
-  .ss-main-panel {
-    padding: 22px 16px;
-  }
+  .ss-main-panel { padding: 62px 16px 22px; }
+  .ss-main-heading { font-size: 26px; }
 
-  .ss-main-heading {
-    font-size: 26px;
-  }
-
-  .ss-topbar {
-    gap: 10px;
-    padding: 0 12px;
-  }
-
-  .ss-title {
-    font-size: 18px;
-  }
+  .ss-topbar { gap: 10px; padding: 0 12px; }
+  .ss-title { font-size: 18px; }
 }
+
 /* =========================
    ORG DROPDOWN
 ========================= */
-.ss-org-wrap {
-  position: relative;
-}
-
-.ss-org-caret {
-  opacity: 0.9;
-}
+.ss-org-wrap { position: relative; }
+.ss-org-caret { opacity: 0.9; }
 
 .ss-org-dropdown {
   position: absolute;
@@ -575,16 +470,9 @@
   outline: none;
   font-size: 13px;
 }
+.ss-org-search input::placeholder { color: rgba(148, 163, 184, 0.6); }
 
-.ss-org-search input::placeholder {
-  color: rgba(148, 163, 184, 0.6);
-}
-
-.ss-org-list {
-  max-height: 260px;
-  overflow: auto;
-  padding: 8px;
-}
+.ss-org-list { max-height: 260px; overflow: auto; padding: 8px; }
 
 .ss-org-item {
   width: 100%;
@@ -598,16 +486,8 @@
   font-weight: 700;
   font-size: 13px;
 }
-
-.ss-org-item:hover {
-  background: rgba(148, 163, 184, 0.10);
-  color: #ffffff;
-}
-
-.ss-org-item.is-active {
-  background: rgba(59, 130, 246, 0.18);
-  color: #ffffff;
-}
+.ss-org-item:hover { background: rgba(148, 163, 184, 0.10); color: #ffffff; }
+.ss-org-item.is-active { background: rgba(59, 130, 246, 0.18); color: #ffffff; }
 
 .ss-org-create {
   margin: 8px;
@@ -615,4 +495,163 @@
   padding-top: 12px;
   font-weight: 900;
   color: #60a5fa;
+}
+
+/* =========================
+   CREDITS DROPDOWN (Coins)
+========================= */
+.ss-credits-wrap { position: relative; }
+
+.ss-coin-caret {
+  opacity: 0.9;
+  margin-left: 6px;
+}
+
+.ss-credits-dropdown {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  width: 360px;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(2, 6, 23, 0.92);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+  z-index: 60;
+  padding: 16px;
+}
+
+.ss-credits-title {
+  font-weight: 900;
+  font-size: 16px;
+  color: rgba(226, 232, 240, 0.95);
+  margin-bottom: 14px;
+}
+
+.ss-credits-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: rgba(226, 232, 240, 0.85);
+  font-weight: 800;
+  font-size: 13px;
+  padding: 10px 0 12px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+  margin-bottom: 14px;
+}
+
+.ss-credits-btn {
+  width: 100%;
+  border: none;
+  background: #2b4ddc;
+  color: #fff;
+  font-weight: 900;
+  padding: 12px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.ss-credits-btn:hover { filter: brightness(1.06); }
+
+/* =========================
+   RIGHT SLIDE PANEL (Saved Searches)
+========================= */
+.ss-right-overlay {
+  position: fixed;
+  top: 64px;              /* topbar ke niche */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.22);
+  z-index: 200;
+}
+
+.ss-right-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 440px;
+  max-width: 92vw;
+  background: rgba(12, 16, 22, 0.96);
+  border-left: 1px solid rgba(148, 163, 184, 0.14);
+  box-shadow: -30px 0 80px rgba(0,0,0,0.45);
+  display: flex;
+  flex-direction: column;
+  padding: 18px 18px 24px;
+  animation: ssSlideIn 0.18s ease-out;
+}
+
+@keyframes ssSlideIn {
+  from { transform: translateX(18px); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+.ss-right-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+}
+
+.ss-right-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 900;
+  color: rgba(226, 232, 240, 0.92);
+}
+
+.ss-right-close {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(2, 6, 23, 0.35);
+  color: rgba(226, 232, 240, 0.85);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.ss-right-close:hover {
+  background: rgba(148, 163, 184, 0.10);
+  color: #fff;
+}
+
+.ss-right-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.ss-right-illus {
+  width: 260px;
+  height: 190px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  background: rgba(148, 163, 184, 0.06);
+  overflow: hidden;
+}
+
+
+.ss-right-text {
+  margin: 0;
+  font-size: 13px;
+  color: rgba(148, 163, 184, 0.75);
+}
+
+/* Make Saved Searches column behave like a button but look same */
+.ss-big-col-btn {
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ss-big-col-btn:hover {
+  background: rgba(148, 163, 184, 0.06);
 }

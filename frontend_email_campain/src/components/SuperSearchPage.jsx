@@ -17,6 +17,9 @@ export default function SuperSearchPage() {
   const [activeTab, setActiveTab] = useState("supersearch"); // "supersearch" | "leadlists"
   const [orgOpen, setOrgOpen] = useState(false);
 
+  // ✅ credits popup (like screenshot)
+  const [creditsOpen, setCreditsOpen] = useState(false);
+
   // dynamic workspaces state (same pattern as Copilot page)
   const [workspaces, setWorkspaces] = useState(() => readWorkspaces());
   const [activeWorkspaceId, setActiveWorkspaceId] = useState(() =>
@@ -57,15 +60,15 @@ export default function SuperSearchPage() {
     );
   }, [workspaces, activeWorkspaceId]);
 
-  const closeAllPopovers = () => setOrgOpen(false);
+  const closeAllPopovers = () => {
+    setOrgOpen(false);
+    setCreditsOpen(false);
+  };
 
   const handleWorkspaceClick = (id) => {
     setOrgOpen(false);
     setActiveWorkspaceId(id);
     setSelectedWorkspaceId(id);
-
-    // optional: if you want to navigate somewhere when workspace changes
-    // navigate("/supersearch");
   };
 
   const handleCreateWorkspaceClick = () => {
@@ -91,7 +94,9 @@ export default function SuperSearchPage() {
               type="button"
               role="tab"
               aria-selected={activeTab === "supersearch"}
-              className={"ss-tab" + (activeTab === "supersearch" ? " is-active" : "")}
+              className={
+                "ss-tab" + (activeTab === "supersearch" ? " is-active" : "")
+              }
               onClick={() => setActiveTab("supersearch")}
             >
               SuperSearch
@@ -101,7 +106,9 @@ export default function SuperSearchPage() {
               type="button"
               role="tab"
               aria-selected={activeTab === "leadlists"}
-              className={"ss-tab" + (activeTab === "leadlists" ? " is-active" : "")}
+              className={
+                "ss-tab" + (activeTab === "leadlists" ? " is-active" : "")
+              }
               onClick={() => setActiveTab("leadlists")}
             >
               Lead Lists
@@ -109,24 +116,54 @@ export default function SuperSearchPage() {
           </div>
 
           <div className="ss-top-right">
-            <div className="ss-coins">
-              <span className="ss-coin-icon">🪙</span>
-              <span className="ss-coin-value">286</span>
-            </div>
-
-            <button className="ss-get-features-btn" type="button">
-              Get All Features
-            </button>
-
-            {/* ✅ ORG DROPDOWN (working) */}
+            {/* ✅ Coins / Credits dropdown */}
             <div
-              className="ss-org-wrap"
+              className="ss-credits-wrap"
               onClick={(e) => e.stopPropagation()}
             >
               <button
+                type="button"
+                className="ss-coins"
+                onClick={() => {
+                  setCreditsOpen((v) => !v);
+                  setOrgOpen(false);
+                }}
+                aria-expanded={creditsOpen}
+              >
+                <span className="ss-coin-icon">🪙</span>
+                <span className="ss-coin-value">0</span>
+                <span className="ss-coin-caret">▾</span>
+              </button>
+
+              {creditsOpen && (
+                <div className="ss-credits-dropdown">
+                  <div className="ss-credits-title">Credits</div>
+
+                  <div className="ss-credits-row">
+                    <span className="ss-credits-label">Instantly Credits</span>
+                    <span className="ss-credits-count">0 / 100</span>
+                  </div>
+
+                  <button className="ss-credits-btn" type="button">
+                    Get Credits
+                  </button>
+                </div>
+              )}
+            </div>
+
+            <button className="ss-get-features-btn" type="button">
+              Upgrade
+            </button>
+
+            {/* ✅ ORG DROPDOWN (working) */}
+            <div className="ss-org-wrap" onClick={(e) => e.stopPropagation()}>
+              <button
                 className="ss-org-btn"
                 type="button"
-                onClick={() => setOrgOpen((v) => !v)}
+                onClick={() => {
+                  setOrgOpen((v) => !v);
+                  setCreditsOpen(false);
+                }}
                 aria-expanded={orgOpen}
               >
                 {activeWorkspaceName} <span className="ss-org-caret">▾</span>
