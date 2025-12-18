@@ -143,6 +143,7 @@ export default function SuperSearchScreen() {
               <div className="ss-big-head">
                 <Clock3 size={16} className="ss-big-ico" />
                 <span>Recent Searches</span>
+          
               </div>
               <div className="ss-big-empty">No saved searches</div>
             </div>
@@ -152,3 +153,4 @@ export default function SuperSearchScreen() {
     </div>
   );
 }
+
