@@ -1,0 +1,227 @@
+/* Full page shell (right side of sidebar) */
+.wv-shell {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #0b0f16;
+  color: #e5e7eb;
+}
+
+/* Top bar */
+.wv-topbar {
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px 0 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: #0b0f16;
+}
+
+.wv-title h1 {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.wv-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wv-credits {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.wv-coin {
+  font-size: 16px;
+}
+.wv-credits-val {
+  font-weight: 700;
+}
+.wv-dd {
+  opacity: 0.9;
+}
+
+.wv-btn {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: #e5e7eb;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.wv-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.wv-btn-primary {
+  background: #2563eb;
+  border-color: rgba(37, 99, 235, 0.55);
+}
+.wv-btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.wv-org {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #e5e7eb;
+  font-weight: 600;
+  cursor: pointer;
+}
+.wv-org:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Body grid */
+.wv-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  min-height: 0;
+}
+
+/* Left inner nav */
+.wv-left {
+  padding: 18px;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.wv-left-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  padding: 14px;
+}
+
+.wv-left-item {
+  padding: 14px 14px;
+  border-radius: 14px;
+  font-weight: 650;
+  color: rgba(229, 231, 235, 0.85);
+  cursor: default;
+}
+
+.wv-left-item + .wv-left-item {
+  margin-top: 6px;
+}
+
+.wv-left-item-active {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+/* Main */
+.wv-main {
+  padding: 18px;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.wv-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 8px 18px 8px;
+}
+
+.wv-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(229, 231, 235, 0.75);
+  font-weight: 600;
+}
+
+.wv-check input {
+  width: 16px;
+  height: 16px;
+  accent-color: #2563eb;
+}
+
+.wv-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wv-ddbtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: #e5e7eb;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.wv-ddbtn:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.wv-btn-dark {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.wv-btn-blue {
+  background: #2563eb;
+  border-color: rgba(37, 99, 235, 0.55);
+}
+.wv-btn-blue:hover {
+  background: #1d4ed8;
+}
+
+/* Empty center */
+.wv-empty {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  min-height: 0;
+}
+
+.wv-illustration {
+  transform: translateY(10px);
+  opacity: 0.95;
+}
+
+/* ✅ Force sidebar + page content side-by-side (only for Website Visitors) */
+.wv-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Sidebar should not shrink */
+.wv-layout .ss-sidebar {
+  flex: 0 0 auto;
+}
+
+/* Page area should take remaining width */
+.wv-layout .wv-shell {
+  flex: 1;
+  min-width: 0;
+  height: 100vh;
+  overflow: auto;
+}

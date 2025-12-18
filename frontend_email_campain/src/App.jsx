@@ -15,6 +15,7 @@ import CrmOpportunitiesPage from "./components/CrmOpportunitiesPage";
 import CrmLeadsPage from "./components/CrmLeadsPage";
 import CrmUnnamedListPage from "./components/CrmUnnamedListPage";
 import CopilotCreateWorkspacePage from "./components/CopilotCreateWorkspacePage";
+import WebsiteVisitorsPage from "./components/WebsiteVisitorsPage";
 
 export default function App() {
   return (
@@ -49,6 +50,9 @@ export default function App() {
 
         {/* Unnamed list detail */}
         <Route path="/crm/unnamed-list/:id" element={<CrmUnnamedListPage />} />
+
+        <Route path="/website-visitors" element={<WebsiteVisitorsPage />} />
+
 
         {/* Create workspace */}
         <Route

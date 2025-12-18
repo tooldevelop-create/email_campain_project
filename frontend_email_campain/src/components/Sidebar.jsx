@@ -15,16 +15,10 @@ import {
   Monitor,
   CircleDashed,
   MessageCircle,
+  Radar, // ✅ add
 } from "lucide-react";
 
-/**
- * URL se active key nikalna
- * IMPORTANT:
- *  - /crm, /crm/opportunities, /crm/leads, /crm/... sab ko "inbox" se map kar rahe hain
- *    taaki hamesha lightning + badge (CRM icon) hi active dikhe.
- */
 function getKeyFromPath(pathname) {
-  // ✅ Copilot ke ALL subroutes ( /copilot/memory/... ) bhi copilot active rakhenge
   if (pathname === "/copilot" || pathname.startsWith("/copilot/"))
     return "copilot";
 
@@ -43,10 +37,12 @@ function getKeyFromPath(pathname) {
   if (pathname === "/analytics" || pathname.startsWith("/analytics/"))
     return "analytics";
 
-  // 🔵 CRM ke saare routes
+  // ✅ Website Visitors
+  if (pathname === "/website-visitors" || pathname.startsWith("/website-visitors/") )
+    return "website-visitors";
+
   if (pathname.startsWith("/crm")) return "inbox";
 
-  // ✅ fallback: campaigns nahi, copilot (safe default)
   return "copilot";
 }
 
@@ -63,7 +59,6 @@ export default function Sidebar({ inboxCount }) {
     (activeKey === key ? " ss-icon-btn-active" : "") +
     (extra ? " " + extra : "");
 
-  // ✅ CRM badge:
   const crmBadgeValue =
     typeof inboxCount === "number" && !Number.isNaN(inboxCount)
       ? inboxCount
@@ -71,78 +66,69 @@ export default function Sidebar({ inboxCount }) {
 
   return (
     <aside className="ss-sidebar">
-      {/* ========== TOP SECTION ========== */}
       <div className="ss-sidebar-top">
-        {/* Logo */}
         <div className="ss-logo">
           <span className="ss-logo-icon">⚡</span>
         </div>
 
-        {/* 1. Star = Copilot */}
         <Link
           to="/copilot"
           className={btnClass("copilot")}
-          title="Instantly Copilot"
+          data-tip="Instantly Copilot"
           onClick={() => setActiveKey("copilot")}
         >
           <Star className="ss-icon" />
         </Link>
 
-        {/* 2. Search = SuperSearch */}
         <Link
           to="/supersearch"
           className={btnClass("supersearch")}
-          title="SuperSearch"
+          data-tip="SuperSearch"
           onClick={() => setActiveKey("supersearch")}
         >
           <Search className="ss-icon" />
         </Link>
 
-        {/* 3. Mail = Email Accounts */}
         <Link
           to="/email-accounts"
           className={btnClass("email")}
-          title="Email Accounts"
+          data-tip="Email Accounts"
           onClick={() => setActiveKey("email")}
         >
           <Mail className="ss-icon" />
         </Link>
 
-        {/* 4. Paper plane = Campaigns */}
         <Link
           to="/campaigns"
           className={btnClass("campaigns")}
-          title="Campaigns"
+          data-tip="Campaigns"
           onClick={() => setActiveKey("campaigns")}
         >
           <Send className="ss-icon" />
         </Link>
 
-        {/* 5. Linked squares = Unibox */}
         <Link
           to="/unibox"
           className={btnClass("unibox")}
-          title="Unibox"
+          data-tip="Unibox"
           onClick={() => setActiveKey("unibox")}
         >
           <Copy className="ss-icon" />
         </Link>
 
-        {/* 6. Graph = Analytics */}
         <Link
           to="/analytics"
           className={btnClass("analytics")}
-          title="Analytics"
+          data-tip="Analytics"
           onClick={() => setActiveKey("analytics")}
         >
           <LineChart className="ss-icon" />
         </Link>
 
-        {/* 7. Lightning + badge = CRM */}
         <Link
           to="/crm"
           className={btnClass("inbox", "ss-icon-btn-notif")}
-          title="CRM"
+          data-tip="CRM"
           onClick={() => setActiveKey("inbox")}
         >
           <Zap className="ss-icon" />
@@ -150,11 +136,20 @@ export default function Sidebar({ inboxCount }) {
         </Link>
       </div>
 
-      {/* ========== BOTTOM SECTION ========== */}
       <div className="ss-sidebar-bottom">
+        {/* ✅ Website Visitors icon (like screenshot bottom UFO) */}
+        <Link
+          to="/website-visitors"
+          className={btnClass("website-visitors")}
+          data-tip="Website Visitors"
+          onClick={() => setActiveKey("website-visitors")}
+        >
+          <Radar className="ss-icon" />
+        </Link>
+
         <button
           className={btnClass("labs")}
-          title="Labs"
+          data-tip="Labs"
           onClick={() => setActiveKey("labs")}
         >
           <Rocket className="ss-icon" />
@@ -162,7 +157,7 @@ export default function Sidebar({ inboxCount }) {
 
         <button
           className={btnClass("dashboard")}
-          title="Dashboard"
+          data-tip="Dashboard"
           onClick={() => setActiveKey("dashboard")}
         >
           <Monitor className="ss-icon" />
@@ -170,7 +165,7 @@ export default function Sidebar({ inboxCount }) {
 
         <button
           className={btnClass("workspaces")}
-          title="Workspaces"
+          data-tip="Workspaces"
           onClick={() => setActiveKey("workspaces")}
         >
           <CircleDashed className="ss-icon" />
@@ -178,7 +173,7 @@ export default function Sidebar({ inboxCount }) {
 
         <button
           className={btnClass("support")}
-          title="Support / Chat"
+          data-tip="Support / Chat"
           onClick={() => setActiveKey("support")}
         >
           <MessageCircle className="ss-icon" />
